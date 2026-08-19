@@ -1,0 +1,22 @@
+.portrait-image {
+  background: #171717 url('assets/imrane-ammour-portrait-clean.png') center / contain no-repeat;
+}
+
+.portrait-image::after {
+  border-color: rgba(255, 255, 255, .48);
+}
+
+.brand-logo {
+  display: block;
+  width: 47px;
+  height: 47px;
+  object-fit: contain;
+}
+
+.contact-bottom {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 720px) {
+  .contact-bottom { grid-template-columns: 1fr; }
+}

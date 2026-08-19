@@ -1,0 +1,51 @@
+/* Mobile-first image treatment: preserve every render without cropping. */
+@media (max-width: 720px) {
+  .site-header { padding: 0 6vw; }
+  .brand-logo { width: 41px; height: 41px; }
+  .brand { gap: 9px; }
+  .brand strong { font-size: 9px; }
+
+  /* Hero render retains its complete composition on a phone. */
+  .hero-image {
+    height: auto;
+    aspect-ratio: 3 / 2;
+    background-color: #d8d8d0;
+  }
+  .hero-image::before { inset: 9px; }
+  .hero-image::after { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+  .image-label { left: 19px; bottom: 18px; font-size: 9px; }
+  .hero-caption { gap: 10px; line-height: 1.5; }
+
+  /* Project thumbnails keep their original framing. */
+  .project-card .cafe-thumbnail,
+  .project-card .villa-thumbnail,
+  .project-card .parapharmacie-thumbnail {
+    height: auto;
+    aspect-ratio: 16 / 10;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #d6d1c6;
+  }
+
+  /* Case-study images are never cropped on narrow screens. */
+  .case-cover img {
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
+  .case-gallery figure,
+  .case-gallery .gallery-wide,
+  .case-gallery .gallery-last,
+  .villa-gallery figure {
+    min-height: 0;
+    height: auto;
+  }
+  .case-gallery img {
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* The full animation frame remains visible too. */
+  .video-card.video-player { height: auto; aspect-ratio: 16 / 9; }
+  .video-player video { object-fit: contain; }
+}

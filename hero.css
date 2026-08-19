@@ -1,0 +1,40 @@
+/* Hero render — Villa contemporaine */
+.hero-image { background: #d8d8d0; }
+
+.hero-image > img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  inset: 13px;
+  width: auto;
+  height: auto;
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, .34);
+  z-index: 1;
+}
+
+.hero-image::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  right: 20px;
+  bottom: 18px;
+  background: transparent;
+  clip-path: none;
+  border-right: 1px solid rgba(255, 255, 255, .55);
+  border-bottom: 1px solid rgba(255, 255, 255, .55);
+  z-index: 1;
+}
+
+.image-label { text-shadow: 0 1px 12px rgba(0, 0, 0, .5); }
