@@ -48,6 +48,25 @@
   /* The full animation frame remains visible too. */
   .video-card.video-player { height: auto; aspect-ratio: 16 / 9; }
   .video-player video { object-fit: contain; }
+
+  /* Final phone polish: improve reading rhythm and touch comfort only. */
+  main, .hero, .section, .case-hero, .case-intro, .contact { min-width: 0; }
+  .section { padding: 82px 6vw; }
+  .section h2, .contact h2 { line-height: 1.08; letter-spacing: -1.7px; }
+  .intro, .section-head > p:last-child, .video-head > p:last-child { font-size: 14px; line-height: 1.75; }
+  .project-card, .project-card:nth-child(2), .project-card:nth-child(3), .project-wide { margin-bottom: 38px !important; }
+  .project-info { gap: 12px; }
+  .project-info h3 { font-size: clamp(24px, 7vw, 27px); }
+  .service { padding: 24px 0; }
+  .service p { max-width: 26ch; }
+  .menu-toggle, .filter, .button, .form-submit { min-height: 44px; }
+  .filter { padding-inline: 3px; }
+  .contact-form { margin-top: 42px; gap: 16px; }
+  .form-field input, .form-field textarea { padding: 14px; font-size: 16px; }
+  .contact-bottom { font-size: 12px; }
+  .contact-bottom div { gap: 16px; flex-wrap: wrap; }
+  .case-intro { padding: 76px 6vw; }
+  .case-gallery { padding-bottom: 76px; }
 }
 
 @media (max-width: 360px) {
@@ -55,4 +74,6 @@
   .project-filters { gap: 17px; }
   .project-image, .project-large .project-image, .project-wide .project-image { height: auto; aspect-ratio: 4 / 3; }
   .button { gap: 22px; }
+  .section { padding-top: 76px; padding-bottom: 76px; }
+  .contact h2 { font-size: 42px; }
 }
