@@ -3,8 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio d'Imrane Ammour, architecte d'intérieur et 3D designer." />
-    <title>Imrane Ammour — Interior Architecture & 3D</title>
+    <meta name="description" content="Portfolio d'Imrane Ammour, architecture d'intérieur et visualisation 3D à Rabat, Salé et partout au Maroc." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://imrane-portfolio.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_MA" />
+    <meta property="og:site_name" content="Imrane Ammour" />
+    <meta property="og:title" content="Imrane Ammour — Architecture intérieure &amp; 3D" />
+    <meta property="og:description" content="Architecture d'intérieur et visualisation 3D à Rabat, Salé et partout au Maroc." />
+    <meta property="og:url" content="https://imrane-portfolio.netlify.app/" />
+    <meta property="og:image" content="https://imrane-portfolio.netlify.app/assets/hero-villa.png" />
+    <meta property="og:image:alt" content="Visualisation 3D d'une villa contemporaine" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Imrane Ammour — Architecture intérieure &amp; 3D" />
+    <meta name="twitter:description" content="Architecture d'intérieur et visualisation 3D à Rabat, Salé et partout au Maroc." />
+    <meta name="twitter:image" content="https://imrane-portfolio.netlify.app/assets/hero-villa.png" />
+    <title>Imrane Ammour — Architecture intérieure &amp; 3D</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/png" href="assets/imrane-ammour-logo.png" />
+    <link rel="apple-touch-icon" href="assets/imrane-ammour-logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
@@ -14,55 +31,58 @@
     <link rel="stylesheet" href="cafe.css" />
     <link rel="stylesheet" href="mobile.css" />
     <link rel="stylesheet" href="contact.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Imrane Ammour",
+        "url": "https://imrane-portfolio.netlify.app/",
+        "jobTitle": "Architecte d'intérieur et designer 3D",
+        "description": "Architecture d'intérieur et visualisation 3D à Rabat, Salé et partout au Maroc."
+      }
+    </script>
   </head>
   <body>
     <div class="noise" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="brand" href="#accueil" aria-label="Accueil Imrane Ammour"><img class="brand-logo" src="assets/imrane-ammour-logo.png" alt="IA" /><strong>IMRANE<br />AMMOUR</strong></a>
-      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false"><i></i><i></i></button>
+      <a class="brand" href="#accueil" aria-label="Accueil Imrane Ammour"><img class="brand-logo" src="assets/imrane-ammour-logo.png" alt="IA" width="1536" height="1024" /><strong>IMRANE<br />AMMOUR</strong></a>
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><i></i><i></i></button>
       <nav aria-label="Navigation principale">
         <a href="#projets">Projets</a><a href="#apropos">À propos</a><a href="#services">Services</a><a href="#contact">Contact</a>
       </nav>
     </header>
-
     <main>
       <section class="hero" id="accueil">
         <div class="hero-copy reveal">
           <p class="eyebrow">Architecture d'intérieur · Visualisation 3D</p>
           <h1>Des espaces<br /><em>pensés pour être</em><br />ressentis.</h1>
           <p class="intro">Je transforme les idées en intérieurs et extérieurs singuliers, où chaque détail raconte une histoire.</p>
-          <a class="button button-dark" href="#projets">Voir mes projets <span>↘</span></a>
+          <a class="button button-dark" href="#projets">Voir mes projets <span aria-hidden="true">↘</span></a>
         </div>
         <div class="hero-visual reveal delay-1">
-          <div class="hero-image"><img src="assets/hero-villa.png" alt="Visualisation 3D d'une villa contemporaine" /><div class="image-label">Villa contemporaine<br />Visualisation 3D</div></div>
+          <div class="hero-image"><img src="assets/hero-villa.png" alt="Visualisation 3D d'une villa contemporaine" width="1448" height="1086" fetchpriority="high" decoding="async" /><div class="image-label">Villa contemporaine<br />Visualisation 3D</div></div>
           <div class="hero-caption"><span>Portfolio Imrane</span><span>Rabat–Salé, Maroc</span></div>
-          <div class="hero-number">IA</div>
+          <div class="hero-number" aria-hidden="true">IA</div>
         </div>
       </section>
-
       <section class="projects section" id="projets">
         <div class="section-head reveal"><p class="eyebrow">Sélection de travaux</p><h2>Projets<br /><em>choisis.</em></h2><p>Une sélection de projets résidentiels et commerciaux imaginés avec précision.</p></div>
-        <div class="project-filters reveal"><button class="filter active" data-filter="all">Tous</button><button class="filter" data-filter="interieur">Intérieur</button><button class="filter" data-filter="exterieur">Extérieur</button></div>
+        <div class="project-filters reveal" role="group" aria-label="Filtrer les projets"><button class="filter active" type="button" data-filter="all">Tous</button><button class="filter" type="button" data-filter="interieur">Intérieur</button><button class="filter" type="button" data-filter="exterieur">Extérieur</button></div>
         <div class="project-grid">
-          <article class="project-card project-large reveal" data-category="interieur"><a class="project-link" href="cafe-khemisset.html" aria-label="Voir le projet Café Khémisset"><div class="project-image cafe-thumbnail"><span>01</span></div><div class="project-info"><div><p>Intérieur · Hospitality</p><h3>Café Khémisset</h3></div><span class="project-arrow">↗</span></div></a></article>
-          <article class="project-card reveal delay-1" data-category="exterieur"><a class="project-link" href="villa-contemporaine.html" aria-label="Découvrir la villa contemporaine"><div class="project-image villa-thumbnail"><span>02</span></div><div class="project-info"><div><p>Extérieur · Projet personnel</p><h3>Villa contemporaine</h3></div><span class="project-arrow">↗</span></div></a></article>
-          <article class="project-card reveal" data-category="interieur"><a class="project-link" href="parapharmacie-sale.html" aria-label="Découvrir le projet Parapharmacie Salé"><div class="project-image parapharmacie-thumbnail"><span>03</span></div><div class="project-info"><div><p>Intérieur · Commercial</p><h3>Parapharmacie Salé</h3></div><span class="project-arrow">↗</span></div></a></article>
-          <article class="project-card project-wide reveal delay-1" data-category="exterieur"><div class="project-image img-night"><span>04</span><div class="pool-shape"></div></div><div class="project-info"><div><p>Extérieur · Commercial</p><h3>Terrasse Atlas</h3></div><a href="#contact" aria-label="Voir Terrasse Atlas">↗</a></div></article>
+          <article class="project-card project-large reveal" data-category="interieur"><a class="project-link" href="cafe-khemisset.html" aria-label="Voir le projet Café Khémisset"><div class="project-image cafe-thumbnail"><span>01</span></div><div class="project-info"><div><p>Intérieur · Hospitality</p><h3>Café Khémisset</h3></div><span class="project-arrow" aria-hidden="true">↗</span></div></a></article>
+          <article class="project-card reveal delay-1" data-category="exterieur"><a class="project-link" href="villa-contemporaine.html" aria-label="Découvrir la villa contemporaine"><div class="project-image villa-thumbnail"><span>02</span></div><div class="project-info"><div><p>Extérieur · Projet personnel</p><h3>Villa contemporaine</h3></div><span class="project-arrow" aria-hidden="true">↗</span></div></a></article>
+          <article class="project-card reveal" data-category="interieur"><a class="project-link" href="parapharmacie-sale.html" aria-label="Découvrir le projet Parapharmacie Salé"><div class="project-image parapharmacie-thumbnail"><span>03</span></div><div class="project-info"><div><p>Intérieur · Commercial</p><h3>Parapharmacie Salé</h3></div><span class="project-arrow" aria-hidden="true">↗</span></div></a></article>
+          <article class="project-card project-wide project-unavailable reveal delay-1" data-category="exterieur" aria-label="Terrasse Atlas, projet en préparation"><div class="project-image img-night"><span>04</span><div class="pool-shape"></div></div><div class="project-info"><div><p>Extérieur · Commercial</p><h3>Terrasse Atlas</h3></div><span class="project-status">Projet en préparation</span></div></article>
         </div>
       </section>
-
       <section class="statement"><p class="eyebrow">Ma vision</p><p class="statement-text reveal">L'architecture devient mémorable quand elle trouve l'équilibre entre <em>matière, lumière et émotion.</em></p></section>
-
       <section class="about section" id="apropos">
         <div class="portrait reveal"><div class="portrait-placeholder portrait-image" role="img" aria-label="Portrait professionnel d'Imrane Ammour"></div><p>IMRANE AMMOUR <span>— Fondateur</span></p></div>
-        <div class="about-copy reveal delay-1"><p class="eyebrow">À propos de moi</p><h2>Créer des lieux qui<br /><em>vous ressemblent.</em></h2><p>Architecte d'intérieur et 3D Designer, je conçois des espaces à la fois fonctionnels, raffinés et profondément humains. Mon travail va de l'idée initiale jusqu'à la visualisation photoréaliste, pour vous permettre de vivre le projet avant même sa réalisation.</p><div class="credentials"><div><span>Expertise</span><strong>Architecture d'intérieur<br />Visualisation 3D</strong></div><div><span>Outils</span><strong>3ds Max · V-Ray · Archicad<br />AutoCAD · Illustrator</strong></div></div></div>
+        <div class="about-copy reveal delay-1"><p class="eyebrow">À propos de moi</p><h2>Créer des lieux qui<br /><em>vous ressemblent.</em></h2><p>Architecte d'intérieur et designer 3D, je conçois des espaces à la fois fonctionnels, raffinés et profondément humains. Mon travail va de l'idée initiale jusqu'à la visualisation photoréaliste, pour vous permettre de vivre le projet avant même sa réalisation.</p><div class="credentials"><div><span>Expertise</span><strong>Architecture d'intérieur<br />Visualisation 3D</strong></div><div><span>Outils</span><strong>3ds Max · V-Ray · Archicad<br />AutoCAD · Illustrator</strong></div></div></div>
       </section>
-
-      <section class="services section" id="services"><div class="section-head reveal"><p class="eyebrow">Ce que je propose</p><h2>Des idées aux<br /><em>espaces réels.</em></h2></div><div class="service-list"><article class="service reveal"><span>01</span><div><h3>Interior Architecture</h3><p>Space planning · Concept design · Material selection · Plans 2D</p></div><b>↘</b></article><article class="service reveal"><span>02</span><div><h3>3D Visualization</h3><p>3D modeling · Rendus photoréalistes · Intérieur & extérieur</p></div><b>↘</b></article><article class="service reveal"><span>03</span><div><h3>Project Development</h3><p>Design concept · Dessins techniques · Presentation boards</p></div><b>↘</b></article></div></section>
-
-      <section class="videos section"><div class="video-head reveal"><p class="eyebrow">En mouvement</p><h2>Visites<br /><em>immersives.</em></h2><p>Découvrez les projets à travers des animations et walkthroughs 3D.</p></div><div class="video-card video-player reveal delay-1"><video controls preload="metadata" poster="assets/villa-contemporaine/facade-principale.png" aria-label="Animation 3D de la villa contemporaine"><source src="assets/villa-contemporaine/villa-walkthrough.mp4" type="video/mp4" />Votre navigateur ne prend pas en charge la lecture vidéo.</video><span>Villa contemporaine · Animation 3D</span></div></section>
-
-      <section class="contact" id="contact"><p class="eyebrow">Un projet en tête ?</p><h2>Faisons quelque chose<br /><em>de beau ensemble.</em></h2><a class="button button-light" href="https://wa.me/212659231523" target="_blank" rel="noopener">Let's Work Together <span>↗</span></a><form class="contact-form" id="contact-form" action="https://formspree.io/f/xljrajoz" method="POST"><div class="form-field"><label for="contact-name">Votre nom</label><input id="contact-name" name="name" type="text" placeholder="Votre nom complet" required /></div><div class="form-field"><label for="contact-email">Votre email</label><input id="contact-email" name="email" type="email" placeholder="nom@email.com" required /></div><div class="form-field"><label for="contact-phone">Votre téléphone <small>(optionnel)</small></label><input id="contact-phone" name="telephone" type="tel" placeholder="+212 ..." /></div><div class="form-field form-message"><label for="contact-message">Votre message</label><textarea id="contact-message" name="message" rows="5" placeholder="Parlez-moi de votre projet..." required></textarea></div><button class="form-submit" type="submit">Envoyer le message <span>↗</span></button><p class="form-status" id="form-status" aria-live="polite"></p></form><div class="contact-bottom"><a href="mailto:imraneammour@gmail.com">imraneammour@gmail.com</a><div><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="https://wa.me/212659231523" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+212659231523">+212 659 231 523</a></div><span>© 2026</span></div></section>
+      <section class="services section" id="services"><div class="section-head reveal"><p class="eyebrow">Ce que je propose</p><h2>Des idées aux<br /><em>espaces réels.</em></h2></div><div class="service-list"><article class="service reveal"><span>01</span><div><h3>Architecture d'intérieur</h3><p>Aménagement des espaces · Conception · Choix des matériaux · Plans 2D</p></div><b aria-hidden="true">↘</b></article><article class="service reveal"><span>02</span><div><h3>Visualisation 3D</h3><p>Modélisation 3D · Rendus photoréalistes · Intérieur &amp; extérieur</p></div><b aria-hidden="true">↘</b></article><article class="service reveal"><span>03</span><div><h3>Développement de projet</h3><p>Concept · Dessins techniques · Planches de présentation</p></div><b aria-hidden="true">↘</b></article></div></section>
+      <section class="videos section"><div class="video-head reveal"><p class="eyebrow">En mouvement</p><h2>Visites<br /><em>immersives.</em></h2><p>Découvrez les projets à travers des animations et visites 3D.</p></div><div class="video-card video-player reveal delay-1"><video controls playsinline preload="metadata" poster="assets/villa-contemporaine/facade-principale.png" width="1448" height="1086" aria-label="Animation 3D de la villa contemporaine"><source src="assets/villa-contemporaine/villa-walkthrough.mp4" type="video/mp4" />Votre navigateur ne prend pas en charge la lecture vidéo.</video><span>Villa contemporaine · Animation 3D</span></div></section>
+      <section class="contact" id="contact"><p class="eyebrow">Un projet en tête ?</p><h2>Faisons quelque chose<br /><em>de beau ensemble.</em></h2><a class="button button-light" href="https://wa.me/212659231523" target="_blank" rel="noopener">Parlons de votre projet <span aria-hidden="true">↗</span></a><form class="contact-form" id="contact-form" action="https://formspree.io/f/xljrajoz" method="POST"><div class="form-field"><label for="contact-name">Votre nom</label><input id="contact-name" name="name" type="text" placeholder="Votre nom complet" autocomplete="name" required /></div><div class="form-field"><label for="contact-email">Votre email</label><input id="contact-email" name="email" type="email" placeholder="nom@email.com" autocomplete="email" required /></div><div class="form-field"><label for="contact-phone">Votre téléphone <small>(optionnel)</small></label><input id="contact-phone" name="telephone" type="tel" placeholder="+212 ..." autocomplete="tel" /></div><div class="form-field form-message"><label for="contact-message">Votre message</label><textarea id="contact-message" name="message" rows="5" placeholder="Parlez-moi de votre projet..." required></textarea></div><button class="form-submit" type="submit">Envoyer le message <span aria-hidden="true">↗</span></button><p class="form-status" id="form-status" aria-live="polite"></p></form><div class="contact-bottom"><a href="mailto:imraneammour@gmail.com">imraneammour@gmail.com</a><div><a href="https://wa.me/212659231523" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+212659231523">+212 659 231 523</a></div><span>© 2026</span></div></section>
     </main>
     <script src="script.js"></script>
   </body>

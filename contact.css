@@ -7,8 +7,10 @@
 .form-message { grid-column: 1 / -1; }
 .form-submit { justify-self: start; border: 0; padding: 15px 19px; background: #f2eee5; color: var(--ink); cursor: pointer; font: 700 11px var(--sans); text-transform: uppercase; letter-spacing: .8px; }
 .form-submit span { margin-left: 22px; font-size: 17px; }
+.form-submit:disabled { cursor: wait; opacity: .66; }
 .form-status { align-self: center; margin: 0; color: #d8d1c4; font-size: 12px; }
 .form-status.error { color: #e4a895; }
+.form-status.success { color: #d4e0c9; }
 .contact .contact-bottom { margin-top: 64px; }
 .contact .contact-bottom { grid-template-columns: 1fr auto 1fr; }
 .contact .contact-bottom > div { justify-content: center; align-items: center; }

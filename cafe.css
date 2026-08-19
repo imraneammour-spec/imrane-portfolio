@@ -1,7 +1,4 @@
-.project-link { display: block; }
 .brand-logo { display: block; width: 47px; height: 47px; object-fit: contain; }
-.project-link .project-arrow { border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; width: 38px; height: 38px; font-size: 18px; transition: .2s; }
-.project-link:hover .project-arrow { background: var(--ink); color: white; }
 .cafe-thumbnail { background: linear-gradient(0deg, rgba(22, 15, 9, .2), rgba(22, 15, 9, 0)), url('assets/cafe-khemisset/01.png') center / cover; }
 .villa-thumbnail { background: linear-gradient(0deg, rgba(14, 18, 15, .22), rgba(14, 18, 15, 0) 55%), url('assets/hero-villa.png') center / cover; }
 .parapharmacie-thumbnail { background: linear-gradient(0deg, rgba(22, 24, 24, .12), rgba(22, 24, 24, 0)), url('assets/parapharmacie-sale/01.jpg') center / cover; }
@@ -33,8 +30,21 @@
 .case-gallery figure { min-height: 440px; margin: 0; overflow: hidden; }
 .case-gallery .gallery-wide { grid-column: 1 / -1; min-height: 670px; }
 .case-gallery .gallery-last { grid-column: 1 / -1; min-height: 680px; }
+.case-gallery figure[data-gallery-image] { cursor: zoom-in; }
+.case-gallery figure[data-gallery-image] img { transition: transform .45s ease; }
+.case-gallery figure[data-gallery-image]:hover img { transform: scale(1.018); }
+.image-lightbox { position: fixed; z-index: 30; inset: 0; display: grid; padding: clamp(18px, 4vw, 52px); place-items: center; background: rgba(20, 19, 17, .93); }
+.image-lightbox[hidden] { display: none; }
+.image-lightbox__image { display: block; max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0 18px 70px rgba(0, 0, 0, .35); }
+.image-lightbox__close { position: fixed; top: 20px; right: 5.5vw; z-index: 1; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; background: rgba(20, 19, 17, .58); color: #fff; cursor: pointer; font-size: 24px; line-height: 1; }
 .next-case { background: #c5b8a4; padding: 115px 5.5vw; text-align: center; }
 .next-case h2 { margin: 0 0 36px; font: 500 clamp(43px, 5.4vw, 78px)/1.03 var(--serif); letter-spacing: -2.5px; }
+.case-pagination { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+.case-pagination a { display: grid; gap: 7px; padding: 32px 5.5vw; transition: background-color .25s ease, color .25s ease; }
+.case-pagination a + a { border-left: 1px solid var(--line); text-align: right; }
+.case-pagination a:hover, .case-pagination a:focus-visible { background: var(--surface); }
+.case-pagination span { color: var(--muted); font: 9px var(--mono); letter-spacing: .6px; text-transform: uppercase; }
+.case-pagination strong { font: 500 clamp(22px, 2.5vw, 34px)/1.1 var(--serif); }
 @media (max-width: 720px) {
   .case-hero { padding: 75px 6vw 62px; }
   .case-hero h1 { font-size: 71px; letter-spacing: -3px; }
@@ -46,4 +56,8 @@
   .case-gallery { grid-template-columns: 1fr; gap: 15px; padding-bottom: 85px; }
   .case-gallery figure, .case-gallery .gallery-wide, .case-gallery .gallery-last { grid-column: auto; min-height: 260px; }
   .next-case { padding: 85px 6vw; }
+  .case-pagination { grid-template-columns: 1fr; }
+  .case-pagination a { padding: 25px 6vw; }
+  .case-pagination a + a { border-top: 1px solid var(--line); border-left: 0; }
+  .image-lightbox__close { top: 14px; right: 6vw; }
 }

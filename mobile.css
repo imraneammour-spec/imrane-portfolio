@@ -49,3 +49,10 @@
   .video-card.video-player { height: auto; aspect-ratio: 16 / 9; }
   .video-player video { object-fit: contain; }
 }
+
+@media (max-width: 360px) {
+  .hero h1 { font-size: 43px; letter-spacing: -2px; }
+  .project-filters { gap: 17px; }
+  .project-image, .project-large .project-image, .project-wide .project-image { height: auto; aspect-ratio: 4 / 3; }
+  .button { gap: 22px; }
+}

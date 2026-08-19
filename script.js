@@ -1,52 +1,155 @@
+document.documentElement.classList.add('js');
+
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const header = document.querySelector('.site-header');
 const menu = document.querySelector('.menu-toggle');
-const nav = document.querySelector('nav');
-menu?.addEventListener('click', () => {
-  const isOpen = nav.classList.toggle('open');
-  menu.setAttribute('aria-expanded', isOpen);
+const nav = document.querySelector('.site-header nav');
+
+const setHeaderState = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+setHeaderState();
+window.addEventListener('scroll', setHeaderState, { passive: true });
+
+if (menu && nav) {
+  if (!nav.id) nav.id = 'site-navigation';
+  menu.setAttribute('aria-controls', nav.id);
+  const closeMenu = ({ returnFocus = false } = {}) => {
+    nav.classList.remove('open');
+    menu.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-label', 'Ouvrir le menu');
+    if (returnFocus) menu.focus();
+  };
+  const openMenu = () => {
+    nav.classList.add('open');
+    menu.setAttribute('aria-expanded', 'true');
+    menu.setAttribute('aria-label', 'Fermer le menu');
+    nav.querySelector('a')?.focus();
+  };
+  menu.addEventListener('click', () => (nav.classList.contains('open') ? closeMenu() : openMenu()));
+  nav.addEventListener('click', event => { if (event.target.closest('a')) closeMenu(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && nav.classList.contains('open')) closeMenu({ returnFocus: true });
+  });
+  document.addEventListener('click', event => {
+    if (nav.classList.contains('open') && !header.contains(event.target)) closeMenu();
+  });
+  window.addEventListener('resize', () => { if (window.innerWidth > 720) closeMenu(); });
+}
+
+const filters = [...document.querySelectorAll('.filter')];
+const cards = [...document.querySelectorAll('.project-card')];
+const setFilter = filter => {
+  const category = filter.dataset.filter;
+  filters.forEach(item => {
+    const selected = item === filter;
+    item.classList.toggle('active', selected);
+    item.setAttribute('aria-pressed', String(selected));
+  });
+  cards.forEach(card => { card.hidden = !(category === 'all' || card.dataset.category === category); });
+};
+filters.forEach((filter, index) => {
+  filter.setAttribute('aria-pressed', String(filter.classList.contains('active')));
+  filter.addEventListener('click', () => setFilter(filter));
+  filter.addEventListener('keydown', event => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    let nextIndex = index;
+    if (event.key === 'ArrowLeft') nextIndex = (index - 1 + filters.length) % filters.length;
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % filters.length;
+    if (event.key === 'Home') nextIndex = 0;
+    if (event.key === 'End') nextIndex = filters.length - 1;
+    filters[nextIndex].focus();
+    setFilter(filters[nextIndex]);
+  });
 });
 
-document.querySelectorAll('nav a').forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
-
-const filters = document.querySelectorAll('.filter');
-const cards = document.querySelectorAll('.project-card');
-filters.forEach(filter => filter.addEventListener('click', () => {
-  filters.forEach(item => item.classList.remove('active'));
-  filter.classList.add('active');
-  cards.forEach(card => {
-    const show = filter.dataset.filter === 'all' || card.dataset.category === filter.dataset.filter;
-    card.style.display = show ? '' : 'none';
-  });
-}));
-
-const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-  if (entry.isIntersecting) {
-    entry.target.classList.add('visible');
-    observer.unobserve(entry.target);
-  }
-}), { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(item => observer.observe(item));
+if (!reducedMotion && 'IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(item => observer.observe(item));
+} else {
+  document.querySelectorAll('.reveal').forEach(item => item.classList.add('visible'));
+}
 
 const contactForm = document.querySelector('#contact-form');
 contactForm?.addEventListener('submit', async event => {
   event.preventDefault();
+  if (!contactForm.reportValidity()) return;
   const status = document.querySelector('#form-status');
   const button = contactForm.querySelector('button[type="submit"]');
   button.disabled = true;
-  status.textContent = 'Envoi du message...';
+  button.setAttribute('aria-busy', 'true');
+  status.className = 'form-status';
+  status.textContent = 'Envoi du message…';
   try {
     const response = await fetch(contactForm.action, {
       method: contactForm.method,
       headers: { Accept: 'application/json' },
       body: new FormData(contactForm)
     });
-    if (!response.ok) throw new Error('Unable to submit');
+    if (!response.ok) throw new Error('Form submission failed');
     contactForm.reset();
-    status.classList.remove('error');
+    status.classList.add('success');
     status.textContent = 'Merci, votre message a bien été envoyé.';
-  } catch (error) {
+  } catch {
     status.classList.add('error');
     status.textContent = 'Une erreur est survenue. Réessayez ou contactez-moi sur WhatsApp.';
   } finally {
     button.disabled = false;
+    button.removeAttribute('aria-busy');
   }
 });
+
+const galleryImages = [...document.querySelectorAll('[data-gallery-image] img')];
+if (galleryImages.length) {
+  const lightbox = document.createElement('div');
+  lightbox.className = 'image-lightbox';
+  lightbox.hidden = true;
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Aperçu de l’image');
+  lightbox.innerHTML = '<button class="image-lightbox__close" type="button" aria-label="Fermer l’aperçu">×</button><img class="image-lightbox__image" alt="" />';
+  document.body.append(lightbox);
+  const preview = lightbox.querySelector('.image-lightbox__image');
+  const closeButton = lightbox.querySelector('.image-lightbox__close');
+  let trigger;
+  const closeLightbox = () => {
+    lightbox.hidden = true;
+    document.body.classList.remove('lightbox-open');
+    trigger?.focus();
+  };
+  const openLightbox = image => {
+    trigger = image.closest('[data-gallery-image]');
+    preview.src = image.currentSrc || image.src;
+    preview.alt = image.alt;
+    lightbox.hidden = false;
+    document.body.classList.add('lightbox-open');
+    closeButton.focus();
+  };
+  galleryImages.forEach(image => {
+    const figure = image.closest('[data-gallery-image]');
+    figure.tabIndex = 0;
+    figure.setAttribute('role', 'button');
+    figure.setAttribute('aria-label', `Agrandir : ${image.alt}`);
+    figure.addEventListener('click', () => openLightbox(image));
+    figure.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(image);
+      }
+    });
+  });
+  closeButton.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', event => {
+    if (lightbox.hidden) return;
+    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      closeButton.focus();
+    }
+  });
+}

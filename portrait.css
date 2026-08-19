@@ -12,11 +12,3 @@
   height: 47px;
   object-fit: contain;
 }
-
-.contact-bottom {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-@media (max-width: 720px) {
-  .contact-bottom { grid-template-columns: 1fr; }
-}
