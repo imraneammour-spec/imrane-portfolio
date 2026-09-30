@@ -143,12 +143,24 @@ if (galleryImages.length) {
   lightbox.hidden = true;
   lightbox.setAttribute('role', 'dialog');
   lightbox.setAttribute('aria-modal', 'true');
-  lightbox.setAttribute('aria-label', 'Aperçu de l’image');
-  lightbox.innerHTML = '<button class="image-lightbox__close" type="button" aria-label="Fermer l’aperçu">×</button><img class="image-lightbox__image" alt="" />';
+  lightbox.setAttribute('aria-label', 'Galerie du projet');
+  lightbox.innerHTML = '<span class="image-lightbox__counter" aria-live="polite"></span><button class="image-lightbox__close" type="button" aria-label="Fermer la galerie">×</button><button class="image-lightbox__nav image-lightbox__prev" type="button" aria-label="Image précédente">←</button><img class="image-lightbox__image" alt="" /><button class="image-lightbox__nav image-lightbox__next" type="button" aria-label="Image suivante">→</button>';
   document.body.append(lightbox);
   const preview = lightbox.querySelector('.image-lightbox__image');
+  const counter = lightbox.querySelector('.image-lightbox__counter');
   const closeButton = lightbox.querySelector('.image-lightbox__close');
+  const previousButton = lightbox.querySelector('.image-lightbox__prev');
+  const nextButton = lightbox.querySelector('.image-lightbox__next');
+  const controls = [closeButton, previousButton, nextButton];
   let trigger;
+  let currentIndex = 0;
+  const showImage = index => {
+    currentIndex = (index + galleryImages.length) % galleryImages.length;
+    const image = galleryImages[currentIndex];
+    preview.src = image.currentSrc || image.src;
+    preview.alt = image.alt;
+    counter.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(galleryImages.length).padStart(2, '0')}`;
+  };
   const closeLightbox = () => {
     lightbox.hidden = true;
     document.body.classList.remove('lightbox-open');
@@ -156,8 +168,7 @@ if (galleryImages.length) {
   };
   const openLightbox = image => {
     trigger = image.closest('[data-gallery-image]');
-    preview.src = image.currentSrc || image.src;
-    preview.alt = image.alt;
+    showImage(galleryImages.indexOf(image));
     lightbox.hidden = false;
     document.body.classList.add('lightbox-open');
     closeButton.focus();
@@ -166,7 +177,7 @@ if (galleryImages.length) {
     const figure = image.closest('[data-gallery-image]');
     figure.tabIndex = 0;
     figure.setAttribute('role', 'button');
-    figure.setAttribute('aria-label', `Agrandir : ${image.alt}`);
+    figure.setAttribute('aria-label', `Voir dans la galerie : ${image.alt}`);
     figure.addEventListener('click', () => openLightbox(image));
     figure.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') {
@@ -176,13 +187,19 @@ if (galleryImages.length) {
     });
   });
   closeButton.addEventListener('click', closeLightbox);
+  previousButton.addEventListener('click', () => showImage(currentIndex - 1));
+  nextButton.addEventListener('click', () => showImage(currentIndex + 1));
   lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', event => {
     if (lightbox.hidden) return;
-    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'Escape') { event.preventDefault(); closeLightbox(); }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); showImage(currentIndex - 1); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); showImage(currentIndex + 1); }
     if (event.key === 'Tab') {
       event.preventDefault();
-      closeButton.focus();
+      const currentControl = controls.indexOf(document.activeElement);
+      const nextControl = event.shiftKey ? (currentControl + controls.length - 1) % controls.length : (currentControl + 1) % controls.length;
+      controls[nextControl].focus();
     }
   });
 }
