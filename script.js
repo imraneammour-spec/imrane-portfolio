@@ -36,7 +36,20 @@ if (menu && nav) {
 }
 
 const filters = [...document.querySelectorAll('.filter')];
+const subfilterGroup = document.querySelector('.project-subfilters');
+const subfilters = [...document.querySelectorAll('.project-subfilter')];
 const cards = [...document.querySelectorAll('.project-card')];
+const setSubfilter = filter => {
+  const type = filter.dataset.projectFilter;
+  subfilters.forEach(item => {
+    const selected = item === filter;
+    item.classList.toggle('active', selected);
+    item.setAttribute('aria-pressed', String(selected));
+  });
+  cards.forEach(card => {
+    card.hidden = card.dataset.category !== 'interieur' || (type !== 'all' && card.dataset.projectType !== type);
+  });
+};
 const setFilter = filter => {
   const category = filter.dataset.filter;
   filters.forEach(item => {
@@ -44,7 +57,12 @@ const setFilter = filter => {
     item.classList.toggle('active', selected);
     item.setAttribute('aria-pressed', String(selected));
   });
-  cards.forEach(card => { card.hidden = !(category === 'all' || card.dataset.category === category); });
+  if (subfilterGroup) subfilterGroup.hidden = category !== 'interieur';
+  if (category === 'interieur' && subfilters.length) {
+    setSubfilter(subfilters[0]);
+  } else {
+    cards.forEach(card => { card.hidden = !(category === 'all' || card.dataset.category === category); });
+  }
 };
 filters.forEach((filter, index) => {
   filter.setAttribute('aria-pressed', String(filter.classList.contains('active')));
@@ -59,6 +77,21 @@ filters.forEach((filter, index) => {
     if (event.key === 'End') nextIndex = filters.length - 1;
     filters[nextIndex].focus();
     setFilter(filters[nextIndex]);
+  });
+});
+subfilters.forEach((filter, index) => {
+  filter.setAttribute('aria-pressed', String(filter.classList.contains('active')));
+  filter.addEventListener('click', () => setSubfilter(filter));
+  filter.addEventListener('keydown', event => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    let nextIndex = index;
+    if (event.key === 'ArrowLeft') nextIndex = (index - 1 + subfilters.length) % subfilters.length;
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % subfilters.length;
+    if (event.key === 'Home') nextIndex = 0;
+    if (event.key === 'End') nextIndex = subfilters.length - 1;
+    subfilters[nextIndex].focus();
+    setSubfilter(subfilters[nextIndex]);
   });
 });
 
