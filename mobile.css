@@ -20,6 +20,7 @@
   .project-card .cafe-thumbnail,
   .project-card .villa-thumbnail,
   .project-card .villa-interior-thumbnail,
+  .project-card .appartement-thumbnail,
   .project-card .parapharmacie-thumbnail {
     height: auto;
     aspect-ratio: 16 / 10;
