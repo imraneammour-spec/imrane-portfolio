@@ -2,8 +2,14 @@
 .cafe-thumbnail { background: linear-gradient(0deg, rgba(22, 15, 9, .2), rgba(22, 15, 9, 0)), url('assets/cafe-khemisset/01.png') center / cover; }
 .villa-thumbnail { background: linear-gradient(0deg, rgba(14, 18, 15, .22), rgba(14, 18, 15, 0) 55%), url('assets/hero-villa.png') center / cover; }
 .parapharmacie-thumbnail { background: linear-gradient(0deg, rgba(22, 24, 24, .12), rgba(22, 24, 24, 0)), url('assets/parapharmacie-sale/01.jpg') center / cover; }
+.villa-interior-thumbnail { background: linear-gradient(0deg, rgba(22, 15, 9, .2), rgba(22, 15, 9, 0)), url('assets/villa/01.webp') center / cover; }
 .villa-gallery { padding-top: 0; }
 .villa-gallery figure { min-height: 520px; }
+.case-gallery.villa-interior-gallery { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.case-gallery.villa-interior-gallery figure { grid-column: span 3; min-height: 0; }
+.case-gallery.villa-interior-gallery .gallery-wide { grid-column: 1 / -1; min-height: 0; }
+.case-gallery.villa-interior-gallery .gallery-portrait { grid-column: span 2; }
+.case-gallery.villa-interior-gallery img { height: auto; object-fit: contain; }
 .parapharmacie-cover img { height: min(76vw, 900px); object-fit: contain; background: #dfe0de; }
 .parapharmacie-gallery figure { min-height: 0; aspect-ratio: 1020 / 1280; background: #dfe0de; }
 .parapharmacie-gallery img { object-fit: contain; }
@@ -54,6 +60,8 @@
   .case-intro { padding: 85px 6vw; display: block; }
   .case-intro .eyebrow { margin-bottom: 23px; }
   .case-gallery { grid-template-columns: 1fr; gap: 15px; padding-bottom: 85px; }
+  .case-gallery.villa-interior-gallery { grid-template-columns: 1fr; }
+  .case-gallery.villa-interior-gallery figure, .case-gallery.villa-interior-gallery .gallery-wide, .case-gallery.villa-interior-gallery .gallery-portrait { grid-column: auto; }
   .case-gallery figure, .case-gallery .gallery-wide, .case-gallery .gallery-last { grid-column: auto; min-height: 260px; }
   .next-case { padding: 85px 6vw; }
   .case-pagination { grid-template-columns: 1fr; }
