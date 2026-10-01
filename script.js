@@ -136,6 +136,77 @@ contactForm?.addEventListener('submit', async event => {
   }
 });
 
+// Keep each project's images in a compact, independently navigable gallery.
+const projectCover = document.querySelector('.case-study > main > .case-cover[data-gallery-image]');
+const firstProjectGallery = document.querySelector('.case-study .case-gallery');
+if (projectCover && firstProjectGallery) firstProjectGallery.prepend(projectCover);
+
+document.querySelectorAll('.case-study .case-gallery').forEach(gallery => {
+  const slides = [...gallery.querySelectorAll(':scope > figure[data-gallery-image]')];
+  if (!slides.length) return;
+
+  const controls = document.createElement('div');
+  controls.className = 'project-carousel__controls';
+  controls.innerHTML = '<span class="project-carousel__hint">Explorer les vues <span aria-hidden="true">↗</span></span><div class="project-carousel__navigation"><button class="project-carousel__arrow project-carousel__previous" type="button" aria-label="Vue précédente">←</button><span class="project-carousel__counter" aria-live="polite"></span><button class="project-carousel__arrow project-carousel__next" type="button" aria-label="Vue suivante">→</button></div>';
+
+  const rail = document.createElement('div');
+  rail.className = 'project-carousel__rail';
+  rail.setAttribute('role', 'group');
+  rail.setAttribute('aria-label', 'Choisir une vue');
+  const thumbnails = slides.map((slide, index) => {
+    const image = slide.querySelector('img');
+    const button = document.createElement('button');
+    button.className = 'project-carousel__thumbnail';
+    button.type = 'button';
+    button.setAttribute('aria-label', `Afficher la vue ${index + 1} sur ${slides.length}`);
+    const thumbnail = document.createElement('img');
+    thumbnail.src = image.src;
+    thumbnail.alt = '';
+    thumbnail.loading = 'lazy';
+    button.append(thumbnail);
+    rail.append(button);
+    return button;
+  });
+
+  let activeIndex = 0;
+  const counter = controls.querySelector('.project-carousel__counter');
+  const showSlide = (index, animate = true) => {
+    const nextIndex = (index + slides.length) % slides.length;
+    const direction = index < activeIndex ? 'previous' : 'next';
+    slides.forEach((slide, slideIndex) => {
+      slide.hidden = slideIndex !== nextIndex;
+      slide.classList.toggle('is-active', slideIndex === nextIndex);
+      slide.classList.remove('slide-from-next', 'slide-from-previous');
+    });
+    if (animate && !reducedMotion && nextIndex !== activeIndex) {
+      // Restart the entrance animation when moving between the same two views.
+      void slides[nextIndex].offsetWidth;
+      slides[nextIndex].classList.add(`slide-from-${direction}`);
+    }
+    thumbnails.forEach((button, slideIndex) => {
+      if (slideIndex === nextIndex) button.setAttribute('aria-current', 'true');
+      else button.removeAttribute('aria-current');
+    });
+    counter.textContent = `${String(nextIndex + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    slides[nextIndex].querySelector('img').loading = 'eager';
+    slides[(nextIndex + 1) % slides.length].querySelector('img').loading = 'eager';
+    activeIndex = nextIndex;
+  };
+
+  controls.querySelector('.project-carousel__previous').addEventListener('click', () => showSlide(activeIndex - 1));
+  controls.querySelector('.project-carousel__next').addEventListener('click', () => showSlide(activeIndex + 1));
+  thumbnails.forEach((button, index) => button.addEventListener('click', () => showSlide(index)));
+  gallery.addEventListener('keydown', event => {
+    if (document.body.classList.contains('lightbox-open')) return;
+    if (event.key === 'ArrowLeft') { event.preventDefault(); showSlide(activeIndex - 1); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); showSlide(activeIndex + 1); }
+  });
+  gallery.append(controls, rail);
+  gallery.classList.add('is-carousel');
+  gallery.setAttribute('aria-roledescription', 'carrousel');
+  showSlide(0, false);
+});
+
 const galleryImages = [...document.querySelectorAll('[data-gallery-image] img')];
 if (galleryImages.length) {
   const lightbox = document.createElement('div');

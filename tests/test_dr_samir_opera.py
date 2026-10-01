@@ -8,7 +8,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED = [f"{i:03}.webp" for i in range(1, 12)]
+EXPECTED = [f"{i:03}.webp" for i in range(1, 12) if i not in (7, 8)]
 
 
 class GalleryParser(HTMLParser):
@@ -28,14 +28,14 @@ class DrSamirOperaTests(unittest.TestCase):
         self.assertIn('href="dr-samir-opera.html"', home)
         self.assertIn('<h3>Dr Samir Opera</h3>', home)
 
-    def test_gallery_has_all_eleven_renders_in_order(self):
+    def test_gallery_excludes_seven_and_eight(self):
         page = ROOT / "dr-samir-opera.html"
         self.assertTrue(page.exists(), "Dr Samir Opera page is missing")
         html = page.read_text(encoding="utf-8")
         parser = GalleryParser()
         parser.feed(html)
         self.assertEqual([Path(src).name for src, _ in parser.images], EXPECTED)
-        self.assertEqual(html.count("data-gallery-image"), 11)
+        self.assertEqual(html.count("data-gallery-image"), 9)
         for src, alt in parser.images:
             with self.subTest(image=src):
                 self.assertTrue(alt)

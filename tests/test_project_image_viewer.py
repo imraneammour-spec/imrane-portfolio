@@ -15,7 +15,7 @@ PROJECT_IMAGES = {
     "cafe-brunch.html": 11,
     "cabinet-dr-hamane.html": 10,
     "dr-hafidi-opera.html": 12,
-    "dr-samir-opera.html": 11,
+    "dr-samir-opera.html": 9,
     "appartement-ayoub.html": 11,
     "appartement-said-opera.html": 4,
 }

@@ -272,3 +272,143 @@ em { color: var(--accent); }
   .project-filters { gap: 4px; }
   .filter { padding-inline: 10px; }
 }
+
+/* A calm, contained image viewer for every project page. */
+.case-study .case-gallery.is-carousel {
+  display: block;
+  width: min(100% - 7vw, 1050px);
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 0 46px;
+}
+.case-study .apartment-room,
+.case-study .brunch-level,
+.case-study .hafidi-space { padding-bottom: 42px; }
+.case-study .apartment-room .case-gallery.is-carousel,
+.case-study .brunch-level .case-gallery.is-carousel,
+.case-study .hafidi-space .case-gallery.is-carousel {
+  width: min(100%, 1050px);
+  padding-bottom: 0;
+}
+.case-study .case-gallery.is-carousel > figure,
+.case-study .case-gallery.is-carousel > .gallery-wide,
+.case-study .case-gallery.is-carousel > .gallery-last {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: min(60vh, 540px);
+  min-height: 0;
+  aspect-ratio: auto;
+  grid-column: auto;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #e2e7de;
+  border-radius: 3px;
+}
+.case-study .case-gallery.is-carousel > figure[hidden] { display: none; }
+.case-study .case-gallery.is-carousel > figure img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transform: none;
+}
+.case-study .case-gallery.is-carousel > figure:hover img { transform: none; }
+.case-study .case-gallery.is-carousel > .case-cover figcaption { display: none; }
+.case-gallery.is-carousel > figure.slide-from-next img { animation: project-image-next .45s cubic-bezier(.2,.7,.2,1) both; }
+.case-gallery.is-carousel > figure.slide-from-previous img { animation: project-image-previous .45s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes project-image-next {
+  from { opacity: .2; transform: translateX(22px) scale(.985); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes project-image-previous {
+  from { opacity: .2; transform: translateX(-22px) scale(.985); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+.project-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 13px 0 11px;
+}
+.project-carousel__hint,
+.project-carousel__counter {
+  color: #596b5a;
+  font: 500 10px var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.project-carousel__hint span { margin-left: 6px; font-size: 15px; }
+.project-carousel__navigation { display: flex; align-items: center; gap: 14px; }
+.project-carousel__arrow {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #adb9ab;
+  border-radius: 50%;
+  background: transparent;
+  color: #29392c;
+  font-size: 22px;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.project-carousel__arrow:hover,
+.project-carousel__arrow:focus-visible { background: #29392c; color: #fff; border-color: #29392c; }
+.project-carousel__rail {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 2px 1px 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #91a08e transparent;
+}
+.project-carousel__thumbnail {
+  flex: 0 0 84px;
+  height: 58px;
+  padding: 3px;
+  border: 1px solid transparent;
+  background: transparent;
+  opacity: .62;
+  cursor: pointer;
+  transition: opacity .2s ease, border-color .2s ease;
+}
+.project-carousel__thumbnail:hover,
+.project-carousel__thumbnail:focus-visible,
+.project-carousel__thumbnail[aria-current="true"] { opacity: 1; border-color: #536c57; }
+.case-study .case-gallery.is-carousel .project-carousel__thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+}
+@media (max-width: 720px) {
+  .case-study .case-gallery.is-carousel { width: min(100% - 10vw, 1050px); padding-bottom: 36px; }
+  .case-study .apartment-room,
+  .case-study .brunch-level,
+  .case-study .hafidi-space { padding-bottom: 30px; }
+  .apartment-room .case-gallery.is-carousel,
+  .brunch-level .case-gallery.is-carousel,
+  .hafidi-space .case-gallery.is-carousel { width: 100%; }
+  .case-study .case-gallery.is-carousel > figure,
+  .case-study .case-gallery.is-carousel > .gallery-wide,
+  .case-study .case-gallery.is-carousel > .gallery-last { height: clamp(245px, 68vw, 390px); }
+  .project-carousel__controls { padding: 10px 0; }
+  .project-carousel__hint { font-size: 8px; }
+  .project-carousel__navigation { gap: 9px; }
+  .project-carousel__arrow { width: 40px; height: 40px; }
+  .project-carousel__thumbnail { flex-basis: 68px; height: 49px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-gallery.is-carousel > figure.slide-from-next img,
+  .case-gallery.is-carousel > figure.slide-from-previous img { animation: none; }
+  .project-carousel__arrow,
+  .project-carousel__thumbnail { transition: none; }
+}
