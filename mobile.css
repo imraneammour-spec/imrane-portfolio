@@ -23,6 +23,7 @@
   .project-card .appartement-thumbnail,
   .project-card .cafe-brunch-thumbnail,
   .project-card .cabinet-thumbnail,
+  .project-card .dr-hafidi-thumbnail,
   .project-card .parapharmacie-thumbnail {
     height: auto;
     aspect-ratio: 16 / 10;

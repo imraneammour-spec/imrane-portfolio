@@ -14,6 +14,7 @@ EXPECTED_TYPES = {
     "appartement.html": "appartements",
     "villa.html": "villas",
     "cabinet-dr-hamane.html": "cabinets",
+    "dr-hafidi-opera.html": "cabinets",
     "parapharmacie-sale.html": "commerces",
 }
 

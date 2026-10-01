@@ -14,6 +14,7 @@ PROJECT_IMAGES = {
     "appartement.html": 13,
     "cafe-brunch.html": 11,
     "cabinet-dr-hamane.html": 10,
+    "dr-hafidi-opera.html": 12,
 }
 
 
