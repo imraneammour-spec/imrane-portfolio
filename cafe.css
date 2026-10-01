@@ -8,6 +8,7 @@
 .cabinet-thumbnail { background: linear-gradient(0deg, rgba(22, 15, 9, .15), rgba(22, 15, 9, 0)), url('assets/cabinet-dr-hamane/001.webp') center / cover; }
 .dr-hafidi-thumbnail { background: linear-gradient(0deg, rgba(22, 15, 9, .15), rgba(22, 15, 9, 0)), url('assets/dr-hafidi-opera/attente-1-001.webp') center / cover; }
 .dr-samir-thumbnail { background: linear-gradient(0deg, rgba(22, 15, 9, .15), rgba(22, 15, 9, 0)), url('assets/dr-samir-opera/001.webp') center / cover; }
+.ayoub-thumbnail { background: linear-gradient(0deg, rgba(22, 15, 9, .15), rgba(22, 15, 9, 0)), url('assets/appartement-ayoub/003.webp') center / cover; }
 .hafidi-space { padding: 0 5.5vw 110px; }
 .hafidi-space-head { display: flex; align-items: baseline; gap: 28px; padding: 23px 0 27px; border-top: 1px solid var(--line); }
 .hafidi-space-head span { color: var(--muted); font: 10px var(--mono); }
@@ -21,8 +22,8 @@
 .project-subfilters[hidden] { display: none; }
 .project-subfilter { min-height: 38px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 30px; background: transparent; color: var(--muted); cursor: pointer; font: 10px var(--mono); }
 .project-subfilter:hover, .project-subfilter.active, .project-subfilter[aria-pressed='true'] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
-.cabinet-gallery figure, .cabinet-gallery .gallery-wide, .samir-gallery figure, .samir-gallery .gallery-wide { min-height: 0; aspect-ratio: 1672 / 941; }
-.cabinet-gallery img, .samir-gallery img { height: 100%; object-fit: cover; }
+.cabinet-gallery figure, .cabinet-gallery .gallery-wide, .samir-gallery figure, .samir-gallery .gallery-wide, .ayoub-gallery figure, .ayoub-gallery .gallery-wide { min-height: 0; aspect-ratio: 1672 / 941; }
+.cabinet-gallery img, .samir-gallery img, .ayoub-gallery img { height: 100%; object-fit: cover; }
 .cabinet-case-hero h1 { font-size: clamp(60px, 8vw, 125px); }
 .apartment-room, .brunch-level { padding: 0 5.5vw 110px; }
 .apartment-room-head, .brunch-level-head { display: flex; align-items: baseline; gap: 28px; padding: 23px 0 27px; border-top: 1px solid var(--line); }
@@ -94,8 +95,9 @@
   .project-subfilters { gap: 8px; margin-top: -12px; margin-bottom: 30px; }
   .project-subfilter { min-height: 44px; font-size: 10px; }
   .cabinet-case-hero h1 { font-size: clamp(46px, 13vw, 60px); }
-  .cabinet-gallery figure, .cabinet-gallery .gallery-wide, .samir-gallery figure, .samir-gallery .gallery-wide { aspect-ratio: auto; }
-  .cabinet-gallery img, .samir-gallery img { height: auto; }
+  .case-hero.ayoub-case-hero h1 { font-size: clamp(36px, 11vw, 46px); letter-spacing: -2px; }
+  .cabinet-gallery figure, .cabinet-gallery .gallery-wide, .samir-gallery figure, .samir-gallery .gallery-wide, .ayoub-gallery figure, .ayoub-gallery .gallery-wide { aspect-ratio: auto; }
+  .cabinet-gallery img, .samir-gallery img, .ayoub-gallery img { height: auto; }
   .case-hero.apartment-case-hero h1 { font-size: clamp(48px, 14vw, 60px); }
   .apartment-room, .brunch-level { padding: 0 6vw 80px; }
   .apartment-room-head, .brunch-level-head { gap: 18px; padding: 19px 0 23px; }

@@ -12,6 +12,7 @@ EXPECTED_TYPES = {
     "cafe-khemisset.html": "cafes-restaurants",
     "cafe-brunch.html": "cafes-restaurants",
     "appartement.html": "appartements",
+    "appartement-ayoub.html": "appartements",
     "villa.html": "villas",
     "cabinet-dr-hamane.html": "cabinets",
     "dr-hafidi-opera.html": "cabinets",
