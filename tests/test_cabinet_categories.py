@@ -13,6 +13,7 @@ EXPECTED_TYPES = {
     "cafe-brunch.html": "cafes-restaurants",
     "appartement.html": "appartements",
     "appartement-ayoub.html": "appartements",
+    "appartement-said-opera.html": "appartements",
     "villa.html": "villas",
     "cabinet-dr-hamane.html": "cabinets",
     "dr-hafidi-opera.html": "cabinets",

@@ -17,6 +17,7 @@ PROJECT_IMAGES = {
     "dr-hafidi-opera.html": 12,
     "dr-samir-opera.html": 11,
     "appartement-ayoub.html": 11,
+    "appartement-said-opera.html": 4,
 }
 
 
