@@ -39,6 +39,13 @@ const filters = [...document.querySelectorAll('.filter')];
 const subfilterGroup = document.querySelector('.project-subfilters');
 const subfilters = [...document.querySelectorAll('.project-subfilter')];
 const cards = [...document.querySelectorAll('.project-card')];
+const projectCount = document.querySelector('.project-count');
+const updateProjectCount = () => {
+  const count = cards.filter(card => !card.hidden).length;
+  if (projectCount) projectCount.textContent = `${count} projet${count > 1 ? 's' : ''} à découvrir`;
+  // Reveals must stay visible when filtering changes the page layout.
+  cards.filter(card => !card.hidden).forEach(card => card.classList.add('visible'));
+};
 const setSubfilter = filter => {
   const type = filter.dataset.projectFilter;
   subfilters.forEach(item => {
@@ -49,6 +56,7 @@ const setSubfilter = filter => {
   cards.forEach(card => {
     card.hidden = card.dataset.category !== 'interieur' || (type !== 'all' && card.dataset.projectType !== type);
   });
+  updateProjectCount();
 };
 const setFilter = filter => {
   const category = filter.dataset.filter;
@@ -63,6 +71,7 @@ const setFilter = filter => {
   } else {
     cards.forEach(card => { card.hidden = !(category === 'all' || card.dataset.category === category); });
   }
+  updateProjectCount();
 };
 filters.forEach((filter, index) => {
   filter.setAttribute('aria-pressed', String(filter.classList.contains('active')));
@@ -115,12 +124,15 @@ contactForm?.addEventListener('submit', async event => {
   const button = contactForm.querySelector('button[type="submit"]');
   button.disabled = true;
   button.setAttribute('aria-busy', 'true');
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 15000);
   status.className = 'form-status';
   status.textContent = 'Envoi du message…';
   try {
     const response = await fetch(contactForm.action, {
       method: contactForm.method,
       headers: { Accept: 'application/json' },
+      signal: controller.signal,
       body: new FormData(contactForm)
     });
     if (!response.ok) throw new Error('Form submission failed');
@@ -131,6 +143,7 @@ contactForm?.addEventListener('submit', async event => {
     status.classList.add('error');
     status.textContent = 'Une erreur est survenue. Réessayez ou contactez-moi sur WhatsApp.';
   } finally {
+    window.clearTimeout(timeout);
     button.disabled = false;
     button.removeAttribute('aria-busy');
   }
@@ -139,7 +152,12 @@ contactForm?.addEventListener('submit', async event => {
 // Keep each project's images in a compact, independently navigable gallery.
 const projectCover = document.querySelector('.case-study > main > .case-cover[data-gallery-image]');
 const firstProjectGallery = document.querySelector('.case-study .case-gallery');
-if (projectCover && firstProjectGallery) firstProjectGallery.prepend(projectCover);
+if (projectCover && firstProjectGallery) {
+  firstProjectGallery.prepend(projectCover);
+  const intro = document.querySelector('.case-study .case-intro');
+  // Put the renders immediately after the title on single-gallery pages.
+  if (intro && firstProjectGallery.parentElement === intro.parentElement) intro.before(firstProjectGallery);
+}
 
 document.querySelectorAll('.case-study .case-gallery').forEach(gallery => {
   const slides = [...gallery.querySelectorAll(':scope > figure[data-gallery-image]')];
@@ -197,10 +215,22 @@ document.querySelectorAll('.case-study .case-gallery').forEach(gallery => {
   controls.querySelector('.project-carousel__next').addEventListener('click', () => showSlide(activeIndex + 1));
   thumbnails.forEach((button, index) => button.addEventListener('click', () => showSlide(index)));
   gallery.addEventListener('keydown', event => {
+    if (event.target.closest('figure[data-gallery-image]') && ['Enter', ' '].includes(event.key)) return;
     if (document.body.classList.contains('lightbox-open')) return;
     if (event.key === 'ArrowLeft') { event.preventDefault(); showSlide(activeIndex - 1); }
     if (event.key === 'ArrowRight') { event.preventDefault(); showSlide(activeIndex + 1); }
   });
+  let touchStart;
+  gallery.addEventListener('touchstart', event => {
+    if (event.target.closest('figure')) touchStart = { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };
+  }, { passive: true });
+  gallery.addEventListener('touchend', event => {
+    if (!touchStart) return;
+    const dx = event.changedTouches[0].clientX - touchStart.x;
+    const dy = event.changedTouches[0].clientY - touchStart.y;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) showSlide(activeIndex + (dx < 0 ? 1 : -1));
+    touchStart = undefined;
+  }, { passive: true });
   gallery.append(controls, rail);
   gallery.classList.add('is-carousel');
   gallery.setAttribute('aria-roledescription', 'carrousel');
@@ -224,6 +254,8 @@ if (galleryImages.length) {
   const nextButton = lightbox.querySelector('.image-lightbox__next');
   const controls = [closeButton, previousButton, nextButton];
   let trigger;
+  const pageContent = [...document.body.children].filter(element => element !== lightbox && element.tagName !== 'SCRIPT');
+  let inertState = [];
   let currentIndex = 0;
   const showImage = index => {
     currentIndex = (index + galleryImages.length) % galleryImages.length;
@@ -235,6 +267,7 @@ if (galleryImages.length) {
   const closeLightbox = () => {
     lightbox.hidden = true;
     document.body.classList.remove('lightbox-open');
+    inertState.forEach(([element, wasInert]) => { element.inert = wasInert; });
     trigger?.focus();
   };
   const openLightbox = image => {
@@ -242,6 +275,8 @@ if (galleryImages.length) {
     showImage(galleryImages.indexOf(image));
     lightbox.hidden = false;
     document.body.classList.add('lightbox-open');
+    inertState = pageContent.map(element => [element, element.inert]);
+    pageContent.forEach(element => { element.inert = true; });
     closeButton.focus();
   };
   galleryImages.forEach(image => {
@@ -273,4 +308,39 @@ if (galleryImages.length) {
       controls[nextControl].focus();
     }
   });
+}
+
+// A slim reading indicator and section-aware navigation use one frame per scroll.
+const readingProgress = document.createElement('div');
+readingProgress.className = 'reading-progress';
+readingProgress.setAttribute('aria-hidden', 'true');
+document.body.append(readingProgress);
+let progressFrame;
+const updateReadingProgress = () => {
+  if (progressFrame) return;
+  progressFrame = window.requestAnimationFrame(() => {
+    const available = document.documentElement.scrollHeight - window.innerHeight;
+    readingProgress.style.transform = `scaleX(${available > 0 ? Math.min(1, Math.max(0, window.scrollY / available)) : 0})`;
+    progressFrame = undefined;
+  });
+};
+window.addEventListener('scroll', updateReadingProgress, { passive: true });
+window.addEventListener('resize', updateReadingProgress);
+updateReadingProgress();
+
+if (nav && 'IntersectionObserver' in window) {
+  const navigationLinks = [...nav.querySelectorAll('a[href^="#"]')];
+  const sections = navigationLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  const navigationObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      navigationLinks.forEach(link => {
+        const active = link.getAttribute('href') === `#${entry.target.id}`;
+        link.classList.toggle('is-current', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-15% 0px -60% 0px', threshold: 0 });
+  sections.forEach(section => navigationObserver.observe(section));
 }
