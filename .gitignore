@@ -2,3 +2,12 @@ __pycache__/
 *.py[cod]
 .DS_Store
 Thumbs.db
+node_modules/
+.next/
+out/
+public/assets/
+public/favicon*
+public/apple-touch-icon.png
+*.tsbuildinfo
+.env*
+!.env.example
