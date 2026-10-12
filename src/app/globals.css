@@ -114,7 +114,7 @@ select {
   text-transform: uppercase;
 }
 .section {
-  padding: 112px 6vw;
+  padding: 60px 6vw;
 }
 .text-link {
   display: inline-flex;
@@ -306,7 +306,7 @@ select {
   color: var(--accent);
 }
 .navigation-note {
-  margin-top: 42px;
+  margin-top: 24px;
   color: var(--muted);
   font-size: 12px;
 }
@@ -380,11 +380,11 @@ select {
 .cinematic-hero {
   position: relative;
   isolation: isolate;
-  min-height: calc(100svh - 88px);
+  min-height: 520px;
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 50px 6vw 100px;
+  padding: 36px 6vw 86px;
 }
 .hero-art {
   position: absolute;
@@ -451,9 +451,9 @@ select {
   flex: none;
 }
 .hero-content h1 {
-  font-size: clamp(66px, 7.4vw, 112px);
-  line-height: 0.94;
-  letter-spacing: -2.8px;
+  font-size: clamp(48px, 4.5vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -1.2px;
 }
 .title-mask {
   display: block;
@@ -516,7 +516,7 @@ select {
 }
 .hero-caption {
   position: absolute;
-  bottom: 102px;
+  bottom: 80px;
   right: 6vw;
   border-left: 1px solid var(--accent);
   padding: 10px 0 10px 17px;
@@ -567,15 +567,15 @@ select {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 62px;
+  margin-bottom: 28px;
 }
 .intro-statement {
   overflow: hidden;
 }
 .section.intro-statement h2 {
-  font-size: clamp(62px, 8.5vw, 136px);
+  font-size: clamp(40px, 4.5vw, 68px);
   line-height: 1.02;
-  letter-spacing: -2.5px;
+  letter-spacing: -1px;
 }
 .section.intro-statement h2 span {
   display: block;
@@ -589,8 +589,8 @@ select {
   display: grid;
   grid-template-columns: 0.8fr 1.3fr 0.9fr;
   align-items: center;
-  gap: 50px;
-  margin-top: 55px;
+  gap: 30px;
+  margin-top: 28px;
 }
 .atelier-symbol {
   font: 68px/1 var(--serif);
@@ -612,14 +612,14 @@ select {
   grid-template-columns: 1.25fr 0.9fr auto;
   gap: 40px;
   align-items: end;
-  margin-bottom: 56px;
+  margin-bottom: 30px;
 }
 .section-heading .eyebrow {
   margin-bottom: 20px;
 }
 .section-heading h2,
 .section h2 {
-  font-size: clamp(48px, 5.5vw, 82px);
+  font-size: clamp(32px, 3.2vw, 48px);
   line-height: 1.04;
   letter-spacing: -1.4px;
 }
@@ -638,7 +638,7 @@ select {
 .featured-composition {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 70px 46px;
+  gap: 38px 30px;
   align-items: start;
 }
 .featured-item:first-child {
@@ -646,7 +646,7 @@ select {
   width: 100%;
 }
 .featured-item:nth-child(3) {
-  margin-top: 130px;
+  margin-top: 45px;
 }
 .featured-item:last-child {
   grid-column: 1/-1;
@@ -716,7 +716,7 @@ select {
   margin-bottom: 5px;
 }
 .project-caption h3 {
-  font-size: clamp(28px, 3vw, 45px);
+  font-size: clamp(24px, 2vw, 32px);
   line-height: 1.2;
 }
 .project-caption > svg {
@@ -782,7 +782,7 @@ select {
   grid-template-columns: 10% 1fr auto;
   gap: 25px;
   align-items: center;
-  padding: 32px 0;
+  padding: 22px 0;
   border-bottom: 1px solid var(--line);
 }
 .expertise-row:after {
@@ -805,7 +805,7 @@ select {
   color: var(--accent);
 }
 .expertise-row h3 {
-  font-size: clamp(28px, 3.4vw, 50px);
+  font-size: clamp(24px, 2.2vw, 34px);
   line-height: 1.15;
   transition: transform 0.3s;
 }
@@ -827,16 +827,16 @@ select {
 
 /* Scene 05 — an ordinary-scroll visual showcase. */
 .showcase {
-  padding: 110px 0 0;
+  padding: 60px 0 0;
 }
 .showcase-title {
-  padding: 0 6vw 50px;
+  padding: 0 6vw 30px;
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   align-items: start;
 }
 .showcase-title h2 {
-  font-size: clamp(60px, 6vw, 96px);
+  font-size: clamp(36px, 3.5vw, 54px);
   line-height: 1.02;
 }
 .showcase-images {
@@ -848,7 +848,7 @@ select {
 .showcase-frame {
   position: relative;
   overflow: hidden;
-  height: 560px;
+  height: 420px;
 }
 .showcase-frame .media > img {
   object-position: center;
@@ -873,9 +873,9 @@ select {
 .about-preview {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
-  gap: 9vw;
+  gap: 5vw;
   align-items: center;
-  padding-top: 130px;
+  padding-top: 60px;
 }
 .portrait-frame {
   background: var(--secondary);
@@ -911,7 +911,7 @@ select {
 }
 .contact-finale {
   text-align: center;
-  padding: 112px 6vw 125px;
+  padding: 60px 6vw 65px;
   border-top: 1px solid var(--line);
   background: var(--secondary);
 }
@@ -919,7 +919,7 @@ select {
   margin-bottom: 32px;
 }
 .contact-finale h2 {
-  font-size: clamp(52px, 7vw, 110px);
+  font-size: clamp(36px, 3.8vw, 58px);
   line-height: 1.04;
   letter-spacing: -1.5px;
 }
@@ -944,7 +944,7 @@ select {
   padding-bottom: 45px;
 }
 .footer-name {
-  font: clamp(40px, 5vw, 74px)/0.96 var(--serif);
+  font: clamp(30px, 3vw, 46px)/0.96 var(--serif);
   letter-spacing: -1.2px;
 }
 .footer-name span {
@@ -989,23 +989,23 @@ select {
 
 /* Collection and secondary page introductions. */
 .page-intro {
-  padding-top: 80px;
-  padding-bottom: 62px;
+  padding-top: 45px;
+  padding-bottom: 32px;
 }
 .page-intro > .eyebrow {
-  margin-bottom: 35px;
+  margin-bottom: 24px;
 }
 .page-intro h1 {
-  font-size: clamp(72px, 9vw, 145px);
-  line-height: 0.98;
-  letter-spacing: -2.5px;
+  font-size: clamp(40px, 4.2vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -1px;
 }
 .page-intro-bottom {
   display: flex;
   align-items: end;
   justify-content: space-between;
   gap: 40px;
-  margin-top: 42px;
+  margin-top: 24px;
   border-top: 1px solid var(--line);
   padding-top: 25px;
 }
@@ -1055,7 +1055,7 @@ select {
 .project-browser-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 52px 30px;
+  gap: 34px 26px;
   animation: filter-enter 0.5s both;
 }
 .project-browser-grid .project-visual {
@@ -1077,9 +1077,9 @@ select {
 .case-hero {
   position: relative;
   isolation: isolate;
-  min-height: calc(100svh - 88px);
-  height: 720px;
-  max-height: 900px;
+  min-height: 520px;
+  height: 56svh;
+  max-height: 600px;
   overflow: hidden;
 }
 .case-hero-image {
@@ -1124,8 +1124,8 @@ select {
   margin-bottom: 22px;
 }
 .case-hero h1 {
-  font-size: clamp(70px, 9vw, 145px);
-  line-height: 0.98;
+  font-size: clamp(40px, 4.2vw, 64px);
+  line-height: 1.08;
   letter-spacing: -2px;
   max-width: 1200px;
   overflow-wrap: break-word;
@@ -1133,11 +1133,11 @@ select {
 .case-overview {
   display: grid;
   grid-template-columns: 1.5fr 0.6fr;
-  gap: 10vw;
+  gap: 5vw;
   align-items: start;
 }
 .case-overview h2 {
-  font-size: clamp(35px, 4vw, 60px);
+  font-size: clamp(28px, 2.6vw, 40px);
   line-height: 1.2;
   letter-spacing: -0.7px;
 }
@@ -1166,14 +1166,14 @@ select {
 .case-concept {
   display: grid;
   grid-template-columns: 0.65fr 1.35fr;
-  gap: 8vw;
+  gap: 5vw;
   background: var(--secondary);
   border-block: 1px solid var(--line);
-  padding-top: 75px;
-  padding-bottom: 75px;
+  padding-top: 45px;
+  padding-bottom: 45px;
 }
 .case-concept > p:last-child {
-  font: clamp(28px, 3vw, 46px)/1.35 var(--serif);
+  font: clamp(24px, 2.2vw, 34px)/1.35 var(--serif);
   letter-spacing: -0.5px;
 }
 .case-renders .section-heading {
@@ -1293,7 +1293,7 @@ select {
   background: var(--bg);
 }
 .case-film h2 {
-  font-size: 60px;
+  font-size: 40px;
   margin-top: 22px;
 }
 .project-pagination {
@@ -1320,7 +1320,7 @@ select {
   justify-content: end;
 }
 .project-pagination strong {
-  font: clamp(28px, 3.5vw, 52px)/1.1 var(--serif);
+  font: clamp(24px, 2.3vw, 34px)/1.1 var(--serif);
 }
 .project-pagination > a:hover {
   background: var(--secondary);
@@ -1331,7 +1331,7 @@ select {
 .biography {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
-  gap: 8vw;
+  gap: 5vw;
   align-items: center;
   padding-top: 25px;
 }
@@ -1344,7 +1344,7 @@ select {
   margin-bottom: 27px;
 }
 .biography-copy h2 {
-  font-size: clamp(43px, 4.6vw, 70px);
+  font-size: clamp(32px, 3vw, 46px);
 }
 .biography-copy > p:not(.eyebrow) {
   margin: 25px 0;
@@ -1362,12 +1362,12 @@ select {
 .approach-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 45px;
+  gap: 28px;
   border-top: 1px solid var(--line);
   padding-top: 30px;
 }
 .approach-grid h3 {
-  font-size: 40px;
+  font-size: 30px;
   margin: 20px 0 16px;
 }
 .approach-grid article > p {
@@ -1392,7 +1392,7 @@ select {
   color: var(--muted);
 }
 .software-list strong {
-  font: clamp(30px, 3.2vw, 46px)/1.2 var(--serif);
+  font: clamp(24px, 2vw, 32px)/1.2 var(--serif);
   font-weight: 400;
 }
 .service-anchor-nav {
@@ -1426,7 +1426,7 @@ select {
 .service-detail {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8vw;
+  gap: 5vw;
   align-items: center;
   border-bottom: 1px solid var(--line);
   scroll-margin-top: 88px;
@@ -1441,7 +1441,7 @@ select {
   margin-bottom: 24px;
 }
 .service-detail-copy h2 {
-  font-size: clamp(46px, 4.4vw, 70px);
+  font-size: clamp(32px, 3vw, 46px);
 }
 .service-detail-copy h3 {
   font-size: 29px;
@@ -1469,7 +1469,7 @@ select {
 }
 .service-visual {
   position: relative;
-  aspect-ratio: 4/5;
+  aspect-ratio: 4/3;
   overflow: hidden;
   background: var(--surface);
 }
@@ -1494,12 +1494,12 @@ select {
 
 /* Contact: real provider, explicit states, editable details. */
 .contact-intro h1 {
-  font-size: clamp(60px, 7.7vw, 120px);
+  font-size: clamp(40px, 4.2vw, 64px);
 }
 .contact-layout {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
-  gap: 10vw;
+  gap: 5vw;
   padding-top: 25px;
 }
 .contact-details > .eyebrow {
@@ -1510,7 +1510,7 @@ select {
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-bottom: 35px;
+  margin-bottom: 24px;
   overflow-wrap: anywhere;
 }
 .contact-email svg {
@@ -1633,11 +1633,11 @@ select {
   position: relative;
   isolation: isolate;
   min-height: 75vh;
-  padding-top: 80px;
+  padding-top: 45px;
   overflow: hidden;
 }
 .not-found h1 {
-  font-size: clamp(70px, 9vw, 140px);
+  font-size: clamp(40px, 4.2vw, 64px);
   line-height: 1;
   letter-spacing: -2px;
   margin: 30px 0;
@@ -1754,22 +1754,22 @@ select {
     padding-inline: max(6vw, calc((100vw - 1580px) / 2));
   }
   .cinematic-hero {
-    min-height: calc(100svh - 88px);
-    max-height: 1100px;
+    min-height: 520px;
+    max-height: 720px;
   }
   .hero-content h1 {
-    font-size: 130px;
+    font-size: 72px;
   }
   .hero-content {
     max-width: 850px;
   }
   .case-hero {
-    height: calc(100svh - 88px);
+    height: 56svh;
   }
 }
 @media (max-width: 1100px) {
   .section {
-    padding-block: 85px;
+    padding-block: 50px;
   }
   .desktop-nav {
     gap: 22px;
@@ -1778,7 +1778,7 @@ select {
     margin-left: 0;
   }
   .hero-content h1 {
-    font-size: clamp(64px, 8.8vw, 94px);
+    font-size: clamp(46px, 5.8vw, 64px);
   }
   .hero-content {
     width: 70%;
@@ -1805,7 +1805,7 @@ select {
     grid-template-columns: 0.4fr 1.2fr 0.8fr;
   }
   .featured-composition {
-    gap: 50px 28px;
+    gap: 34px 24px;
   }
   .showcase-frame {
     height: 430px;
@@ -1836,8 +1836,8 @@ select {
     grid-template-columns: 1.3fr 0.7fr;
   }
   .case-hero {
-    height: 650px;
-    min-height: calc(100svh - 88px);
+    height: 56svh;
+    min-height: 520px;
   }
 }
 
@@ -1866,7 +1866,7 @@ select {
     border: 0;
   }
   .section {
-    padding: 65px 6vw;
+    padding: 40px 6vw;
   }
   .eyebrow {
     font-size: 8px;
@@ -1878,7 +1878,7 @@ select {
   .cinematic-hero {
     display: block;
     min-height: 0;
-    padding: 45px 6vw 0;
+    padding: 30px 6vw 0;
     max-height: none;
   }
   .hero-content {
@@ -1886,8 +1886,8 @@ select {
     max-width: none;
   }
   .hero-content h1 {
-    font-size: clamp(61px, 16vw, 106px);
-    line-height: 0.96;
+    font-size: clamp(40px, 10.5vw, 54px);
+    line-height: 1.04;
     letter-spacing: -1.8px;
   }
   .hero-eyebrow {
@@ -1955,7 +1955,7 @@ select {
     gap: 10px;
   }
   .section-index {
-    margin-bottom: 40px;
+    margin-bottom: 24px;
     gap: 15px;
     align-items: start;
   }
@@ -1965,7 +1965,7 @@ select {
     line-height: 1.8;
   }
   .section.intro-statement h2 {
-    font-size: clamp(48px, 12vw, 88px);
+    font-size: clamp(32px, 8.5vw, 46px);
     letter-spacing: -1.1px;
   }
   .section.intro-statement h2 em {
@@ -1988,11 +1988,11 @@ select {
   }
   .section-heading {
     display: block;
-    margin-bottom: 35px;
+    margin-bottom: 24px;
   }
   .section-heading h2,
   .section h2 {
-    font-size: clamp(44px, 11vw, 66px);
+    font-size: clamp(30px, 8vw, 40px);
     letter-spacing: -1px;
   }
   .section-heading > .eyebrow {
@@ -2031,7 +2031,7 @@ select {
     gap: 12px;
   }
   .project-caption h3 {
-    font-size: 31px;
+    font-size: 26px;
   }
   .project-caption > .eyebrow {
     font-size: 7px;
@@ -2072,7 +2072,7 @@ select {
     width: 20px;
   }
   .showcase {
-    padding-top: 65px;
+    padding-top: 40px;
   }
   .showcase-title {
     display: block;
@@ -2082,7 +2082,7 @@ select {
     margin-bottom: 23px;
   }
   .showcase-title h2 {
-    font-size: 60px;
+    font-size: 40px;
   }
   .showcase-images {
     display: block;
@@ -2119,7 +2119,7 @@ select {
     font-size: 7px;
   }
   .contact-finale {
-    padding: 75px 6vw 80px;
+    padding: 45px 6vw;
   }
   .contact-finale > .eyebrow {
     font-size: 7px;
@@ -2127,7 +2127,7 @@ select {
     margin: 0 auto 25px;
   }
   .contact-finale h2 {
-    font-size: clamp(46px, 12vw, 72px);
+    font-size: clamp(32px, 8.5vw, 44px);
     letter-spacing: -0.8px;
   }
   .contact-finale .button {
@@ -2143,7 +2143,7 @@ select {
     padding-bottom: 30px;
   }
   .footer-name {
-    font-size: 49px;
+    font-size: 36px;
   }
   .footer-top > p {
     grid-row: 2;
@@ -2159,14 +2159,14 @@ select {
     gap: 17px;
   }
   .page-intro {
-    padding-top: 52px;
-    padding-bottom: 40px;
+    padding-top: 32px;
+    padding-bottom: 28px;
   }
   .page-intro > .eyebrow {
     margin-bottom: 28px;
   }
   .page-intro h1 {
-    font-size: clamp(62px, 16vw, 95px);
+    font-size: clamp(36px, 9.5vw, 48px);
     letter-spacing: -1.2px;
   }
   .page-intro-bottom {
@@ -2213,8 +2213,8 @@ select {
   }
   .case-hero {
     min-height: 0;
-    height: 70svh;
-    max-height: 650px;
+    height: 48svh;
+    max-height: 440px;
   }
   .case-hero-top {
     top: 18px;
@@ -2231,7 +2231,7 @@ select {
     letter-spacing: 1px;
   }
   .case-hero h1 {
-    font-size: clamp(57px, 15vw, 90px);
+    font-size: clamp(36px, 9.5vw, 48px);
     letter-spacing: -1px;
   }
   .case-overview {
@@ -2296,7 +2296,7 @@ select {
     display: block;
   }
   .case-film h2 {
-    font-size: 48px;
+    font-size: 34px;
     margin-bottom: 30px;
   }
   .project-pagination {
@@ -2318,7 +2318,7 @@ select {
     padding-top: 10px;
   }
   .biography-copy h2 {
-    font-size: 42px;
+    font-size: 34px;
   }
   .biography-copy > p:not(.eyebrow) {
     font-size: 12px;
@@ -2336,7 +2336,7 @@ select {
     padding-top: 25px;
   }
   .approach-grid h3 {
-    font-size: 37px;
+    font-size: 30px;
     margin: 12px 0;
   }
   .approach-grid article > p {
@@ -2372,7 +2372,7 @@ select {
     order: 0;
   }
   .service-detail-copy h2 {
-    font-size: 47px;
+    font-size: 34px;
   }
   .service-detail-copy h3 {
     font-size: 28px;
@@ -2393,12 +2393,12 @@ select {
     object-fit: contain;
   }
   .contact-intro h1 {
-    font-size: clamp(48px, 12vw, 75px);
+    font-size: clamp(36px, 9.5vw, 48px);
     line-height: 1.03;
   }
   .contact-layout {
     grid-template-columns: 1fr;
-    gap: 50px;
+    gap: 30px;
     padding-top: 15px;
   }
   .contact-email {
@@ -2440,7 +2440,7 @@ select {
     min-height: 75vh;
   }
   .not-found h1 {
-    font-size: 70px;
+    font-size: 44px;
   }
   .error-number {
     top: 70px;
@@ -2456,7 +2456,7 @@ select {
 }
 @media (max-width: 360px) {
   .hero-content h1 {
-    font-size: 57px;
+    font-size: 36px;
     letter-spacing: -1.5px;
   }
   .hero-eyebrow {
@@ -2466,7 +2466,7 @@ select {
     font-size: 5px;
   }
   .section.intro-statement h2 {
-    font-size: 43px;
+    font-size: 30px;
   }
   .contact-email {
     font-size: 25px;
@@ -2475,13 +2475,13 @@ select {
     max-width: 175px;
   }
   .contact-finale h2 {
-    font-size: 42px;
+    font-size: 34px;
   }
   .filter-bar button {
     font-size: 7px;
   }
   .contact-intro h1 {
-    font-size: 45px;
+    font-size: 34px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
