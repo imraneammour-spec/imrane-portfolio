@@ -3,6 +3,13 @@
 Portfolio statique en français : architecture intérieure et visualisation 3D.
 L'accueil et les onze pages de projets partagent un thème sombre, des touches
 dorées et des animations respectant la préférence de mouvement réduit.
+Le hero joue la visite de la villa en boucle et sans son, avec un titre qui
+apparaît ligne par ligne. Le bouton Pause/Lecture permet de contrôler la vidéo.
+Elle se suspend hors écran ou dans un onglet masqué ; la photo reste le
+remplacement en cas d'erreur, de mouvement réduit ou d'économie de données.
+`assets/villa-contemporaine/hero-loop.mp4` est la version légère du hero (H.264,
+1440 px de large, 24 images/s, sans piste audio, environ 2 Mo). La visite
+originale reste utilisée dans la section Visites immersives.
 
 ## Aperçu local
 
@@ -38,6 +45,8 @@ Les liens WhatsApp, téléphone et email offrent des accès directs.
 `node --check script.js` vérifie la syntaxe JavaScript.
 `node --test tests/contact-form.test.cjs` vérifie l'envoi, les erreurs et le timeout
 avec un serveur simulé, sans envoyer de message réel.
+`node --test tests/hero-video.test.cjs` vérifie le contrôle vidéo, les préférences
+de mouvement, l'économie de données et les erreurs de lecture.
 
 Pour régénérer les aperçus après remplacement des images sources :
 `python tools/optimize-preview-images.py` (Pillow nécessaire).

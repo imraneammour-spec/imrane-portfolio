@@ -5,6 +5,63 @@ const header = document.querySelector('.site-header');
 const menu = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.site-header nav');
 
+// Decorative footage only loads when motion is allowed and the hero is visible.
+const hero = document.querySelector('.hero');
+const heroVideo = document.querySelector('.hero-video');
+const heroVideoControl = document.querySelector('.hero-video-control');
+if (hero && heroVideo && heroVideoControl) {
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let manuallyPaused = false;
+  let inView = false;
+  let failed = false;
+  const motionAllowed = () => !motionPreference.matches && !navigator.connection?.saveData;
+  const syncVideoControl = () => {
+    const paused = heroVideo.paused;
+    heroVideoControl.hidden = failed || !motionAllowed() || !heroVideo.getAttribute('src');
+    heroVideoControl.setAttribute('aria-label', paused ? 'Lire l’animation' : 'Mettre l’animation en pause');
+    heroVideoControl.querySelector('.hero-video-control__text').textContent = paused ? 'Lecture' : 'Pause';
+    heroVideoControl.querySelector('.hero-video-control__icon').textContent = paused ? '▷' : 'Ⅱ';
+  };
+  const updateHeroVideo = () => {
+    if (failed || !motionAllowed() || manuallyPaused || !inView || document.hidden) {
+      heroVideo.pause();
+      if (failed || !motionAllowed()) hero.classList.remove('has-video');
+      syncVideoControl();
+      return;
+    }
+    // Preserve the photo until a real frame is playing; rejected autoplay is recoverable.
+    if (!heroVideo.getAttribute('src')) heroVideo.src = heroVideo.dataset.src;
+    heroVideo.muted = true;
+    heroVideo.play().catch(syncVideoControl);
+    syncVideoControl();
+  };
+  heroVideo.addEventListener('playing', () => {
+    hero.classList.add('has-video');
+    syncVideoControl();
+  });
+  heroVideo.addEventListener('pause', syncVideoControl);
+  heroVideo.addEventListener('error', () => {
+    failed = true;
+    updateHeroVideo();
+  });
+  heroVideoControl.addEventListener('click', () => {
+    manuallyPaused = !heroVideo.paused;
+    updateHeroVideo();
+  });
+  document.addEventListener('visibilitychange', updateHeroVideo);
+  motionPreference.addEventListener('change', updateHeroVideo);
+  if ('IntersectionObserver' in window) {
+    const heroObserver = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      updateHeroVideo();
+    }, { threshold: 0 });
+    heroObserver.observe(hero);
+  } else {
+    inView = true;
+    updateHeroVideo();
+  }
+}
+
 const setHeaderState = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
 setHeaderState();
 window.addEventListener('scroll', setHeaderState, { passive: true });
