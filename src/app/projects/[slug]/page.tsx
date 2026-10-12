@@ -61,7 +61,7 @@ export default async function ProjectPage({
         </div>
         <div className="case-hero-title">
           <p className="eyebrow">
-            {project.kind}
+            {project.category} / {project.kind}
             {project.status ? ` / ${project.status}` : ""}
           </p>
           <h1>
@@ -73,7 +73,8 @@ export default async function ProjectPage({
       <section className="case-overview section">
         <div className="case-overview-copy" data-reveal>
           <p className="eyebrow">01 / PROJECT OVERVIEW</p>
-          <h2>{project.overview}</h2>
+          <h2>Project Overview</h2>
+          <p className="case-summary">{project.overview}</p>
         </div>
         <dl className="case-facts" data-reveal>
           <div>
@@ -99,23 +100,24 @@ export default async function ProjectPage({
             </div>
           )}
           <div>
-            <dt>Scope</dt>
+            <dt>Work performed</dt>
             <dd>{project.services.join(" · ")}</dd>
           </div>
         </dl>
       </section>
       <section className="case-concept section" data-reveal>
-        <p className="eyebrow">02 / THE DESIGN INTENTION</p>
+        <div>
+          <p className="eyebrow">02 / THE DESIGN</p>
+          <h2>Design Approach</h2>
+        </div>
         <p>{project.concept}</p>
       </section>
       <section className="case-renders section">
         <div className="section-heading" data-reveal>
           <div>
-            <p className="eyebrow">03 / SPATIAL PERSPECTIVES</p>
+            <p className="eyebrow">03 / PROJECT IMAGES</p>
             <h2>
-              The project,
-              <br />
-              <em>in detail.</em>
+              Project <em>Renders</em>
             </h2>
           </div>
           <p>
@@ -147,11 +149,9 @@ export default async function ProjectPage({
       {project.slug === "villa-contemporaine" && (
         <section className="case-film section">
           <div data-reveal>
-            <p className="eyebrow">04 / IN MOTION</p>
+            <p className="eyebrow">04 / PROJECT VIDEO</p>
             <h2>
-              A different
-              <br />
-              <em>perspective.</em>
+              Villa <em>3D Walkthrough</em>
             </h2>
           </div>
           <video

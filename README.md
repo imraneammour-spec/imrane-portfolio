@@ -60,7 +60,8 @@ section. The current catalogue has no technical drawing or before/after files.
 Add original media to `assets/`, then update the paths, alt text and exact
 dimensions in the data file. Below-the-fold images load lazily. Gallery images
 retain the full original compositions in the viewer. The homepage uses the
-existing optimized WebP previews and a silent ~2 MB H.264 hero loop.
+authentic full-resolution featured covers, optimized service/collection previews
+and a silent ~2 MB H.264 hero loop.
 The full original villa film remains available on its case study.
 
 No demo images need replacement. To replace the authentic portrait, update
@@ -91,12 +92,12 @@ requires no private API keys or server secrets.
 
 ## Animation and accessibility
 
-GSAP/ScrollTrigger provides scroll reveals, restrained image parallax and
-scroll-linked typography. CSS handles entrances, menus, filtering and route
+GSAP/ScrollTrigger provides visible-on-entry reveals, staggered service/tool
+entrances, a process timeline and restrained image parallax. CSS handles entrances, menus, filtering and route
 transitions; there is no scroll hijacking or second animation library.
 GSAP contexts revert on route changes and preference changes.
 
-The preloader lasts 900 ms and runs once per browser-tab session. Reduced
+The preloader lasts 350 ms and runs once per browser-tab session. Reduced
 motion skips it, disables animated effects and retains the still hero image.
 The footer's Reduce motion control provides the same static experience without
 changing system settings. The choice is remembered locally; a system reduced
@@ -130,7 +131,7 @@ pause/resume and real form validation. Form delivery tests use mocked
 responses to avoid unsolicited messages. Lighthouse scores are not claimed
 without a measured Lighthouse run.
 
-## Deployment (not performed)
+## Deployment
 
 Upload the complete `out/` folder to a static host or connect the repository
 with build command `npm run build` and publish directory `out`.
@@ -138,6 +139,16 @@ Serve directory indexes, use `404.html` for missing URLs with HTTP 404, and keep
 video byte-range requests enabled. On Netlify, the supplied configuration and
 legacy redirects handle this.
 
-No public deployment or paid service was created.
+The existing production site is https://imrane-portfolio.netlify.app/.
+Netlify is connected to this repository and automatically builds/publishes
+updates to `main`; pushing that branch changes the public site. No new hosting
+account, paid service or replacement URL is needed.
+
+For homepage copy and visual structure, edit `src/app/page.tsx`. Services and
+process descriptions live in `src/data/services.ts` and `src/data/process.ts`.
+Software uses `{ name, use }` records in `src/data/site.ts`. Technical drawings
+use an explanatory icon until a verified drawing is supplied; see the TODO in
+`src/components/TechnicalVisual.tsx`.
+See `docs/content-clarity-audit.md` for the section audit and verification.
 See the [Next.js static export guide](https://nextjs.org/docs/app/guides/static-exports)
 and [GSAP matchMedia documentation](https://gsap.com/docs/v3/GSAP/gsap.matchMedia/).

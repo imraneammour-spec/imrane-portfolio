@@ -34,15 +34,56 @@ export function Motion({ children }: { children: React.ReactNode }) {
             .forEach((element) => {
               gsap.fromTo(
                 element,
-                { autoAlpha: 0, y: 28 },
+                { opacity: 0.65, y: 16 },
                 {
-                  autoAlpha: 1,
+                  opacity: 1,
                   y: 0,
-                  duration: 0.85,
+                  duration: 0.65,
+                  immediateRender: false,
                   ease: "power3.out",
                   scrollTrigger: {
                     trigger: element,
                     start: "top 94%",
+                    once: true,
+                  },
+                },
+              );
+            });
+          root.current
+            ?.querySelectorAll<HTMLElement>("[data-stagger]")
+            .forEach((group) => {
+              gsap.fromTo(
+                Array.from(group.children),
+                { opacity: 0.65, y: 16 },
+                {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.65,
+                  stagger: 0.09,
+                  immediateRender: false,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: group,
+                    start: "top 90%",
+                    once: true,
+                  },
+                },
+              );
+            });
+          root.current
+            ?.querySelectorAll<HTMLElement>("[data-process-line]")
+            .forEach((line) => {
+              gsap.fromTo(
+                line,
+                { scaleX: 0 },
+                {
+                  scaleX: 1,
+                  duration: 1.2,
+                  immediateRender: false,
+                  ease: "power2.out",
+                  scrollTrigger: {
+                    trigger: line.parentElement,
+                    start: "top 85%",
                     once: true,
                   },
                 },
@@ -71,24 +112,6 @@ export function Motion({ children }: { children: React.ReactNode }) {
                       },
                     },
                   );
-              });
-            root.current
-              ?.querySelectorAll<HTMLElement>("[data-drift]")
-              .forEach((line) => {
-                gsap.fromTo(
-                  line,
-                  { x: line.dataset.drift === "left" ? 22 : -22 },
-                  {
-                    x: line.dataset.drift === "left" ? -22 : 22,
-                    ease: "none",
-                    scrollTrigger: {
-                      trigger: line,
-                      start: "top bottom",
-                      end: "bottom top",
-                      scrub: 1,
-                    },
-                  },
-                );
               });
           }
         },

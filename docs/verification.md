@@ -1,6 +1,8 @@
 # Verification — architectural atelier
 
-Verified locally on 12 October 2026. No public deployment was performed.
+Initial Next.js migration verified locally on 12 October 2026. This historical
+check preceded the first public deployment. For the subsequent content redesign,
+see `content-clarity-audit.md`.
 
 ## Automated checks
 

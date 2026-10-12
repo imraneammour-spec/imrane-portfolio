@@ -11,24 +11,21 @@ export default function Contact() {
   return (
     <>
       <section className="page-intro section contact-intro">
-        <p className="eyebrow">YOUR NEXT SPACE STARTS HERE</p>
+        <p className="eyebrow">CONTACT IMRANE AMMOUR</p>
         <h1>
-          Let’s create
-          <br />
-          <em>something exceptional.</em>
+          Let’s Work on <em>Your Project</em>
         </h1>
         <div className="page-intro-bottom">
           <p>
-            A first idea, a space to transform, an image to bring to life.
-            <br />
-            Tell me what you have in mind.
+            Share your project type, location, references and the design or
+            visualization work you need.
           </p>
           <span className="tiny-label">{site.location}</span>
         </div>
       </section>
       <section className="contact-layout section">
         <aside className="contact-details" data-reveal>
-          <p className="eyebrow">A DIRECT CONVERSATION</p>
+          <p className="eyebrow">EMAIL, WHATSAPP OR PHONE</p>
           <a className="contact-email" href={`mailto:${site.email}`}>
             {site.email}
             <Mail size={20} />

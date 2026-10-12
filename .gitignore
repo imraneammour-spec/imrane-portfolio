@@ -9,5 +9,6 @@ public/assets/
 public/favicon*
 public/apple-touch-icon.png
 *.tsbuildinfo
+.cache/npm/
 .env*
 !.env.example

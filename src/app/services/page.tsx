@@ -4,6 +4,7 @@ import { services } from "@/data/services";
 import { getProject } from "@/data/projects";
 import { Media } from "@/components/Media";
 import { ContactFinale } from "@/components/ContactFinale";
+import { TechnicalVisual } from "@/components/TechnicalVisual";
 export const metadata = {
   title: "Services",
   description:
@@ -14,19 +15,18 @@ export default function Services() {
   return (
     <>
       <section className="page-intro section">
-        <p className="eyebrow">DESIGN / IMAGE / DOCUMENTATION</p>
+        <p className="eyebrow">PROFESSIONAL SERVICES</p>
         <h1>
-          From an idea
+          Interior Design &amp;
           <br />
-          to <em>an atmosphere.</em>
+          <em>3D Visualization</em>
         </h1>
         <div className="page-intro-bottom">
           <p>
-            Creative direction and technical precision,
-            <br />
-            through every perspective of your project.
+            Space planning, photorealistic imagery, technical drawings and
+            furniture modeling.
           </p>
-          <span className="tiny-label">FOUR CONNECTED DISCIPLINES</span>
+          <span className="tiny-label">EXPLORE THE SCOPE OF EACH SERVICE</span>
         </div>
       </section>
       <nav className="service-anchor-nav" aria-label="Service areas">
@@ -63,17 +63,23 @@ export default function Services() {
                 Discuss your project <ArrowUpRight size={17} />
               </Link>
             </div>
-            <Link
-              className="service-visual"
-              href={`/projects/${project.slug}/`}
-              aria-label={`Explore ${project.title}`}
-              data-parallax
-            >
-              <Media image={project.gallery[service.image]} />
-              <span>
-                {project.title} <ArrowUpRight size={18} />
-              </span>
-            </Link>
+            {service.id === "technical" ? (
+              <div className="service-visual">
+                <TechnicalVisual />
+              </div>
+            ) : (
+              <Link
+                className="service-visual"
+                href={`/projects/${project.slug}/`}
+                aria-label={`Explore ${project.title}`}
+                data-parallax
+              >
+                <Media image={project.gallery[service.image]} />
+                <span>
+                  {project.title} <ArrowUpRight size={18} />
+                </span>
+              </Link>
+            )}
           </section>
         );
       })}

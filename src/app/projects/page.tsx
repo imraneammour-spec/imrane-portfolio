@@ -11,19 +11,20 @@ export default function Projects() {
   return (
     <>
       <section className="page-intro section">
-        <p className="eyebrow">THE PORTFOLIO / SELECTED EXPLORATIONS</p>
+        <p className="eyebrow">THE PORTFOLIO</p>
         <h1>
-          Spaces,
-          <br />
-          <em>in perspective.</em>
+          Interior &amp; Architectural <em>Projects</em>
         </h1>
         <div className="page-intro-bottom">
           <p>
             A collection of interior designs and architectural visualizations.
             <br />
-            Explore the concept, the spaces and the details.
+            Filter by discipline, then open a project to see its scope and
+            renders.
           </p>
-          <span className="tiny-label">{projects.length} PROJECTS / SELECTED WORK</span>
+          <span className="tiny-label">
+            {projects.length} PROJECTS / SELECTED WORK
+          </span>
         </div>
       </section>
       <section

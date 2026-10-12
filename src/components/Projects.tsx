@@ -4,7 +4,10 @@ import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { projects, type Project } from "@/data/projects";
 import { Media } from "./Media";
-import { matchesProjectCategory, projectCategories } from "@/lib/project-filters";
+import {
+  matchesProjectCategory,
+  projectCategories,
+} from "@/lib/project-filters";
 
 export function ProjectLink({
   project,
@@ -20,7 +23,7 @@ export function ProjectLink({
       aria-label={`View ${project.title}`}
     >
       <div className="project-visual" data-parallax>
-        <Media image={project.preview} />
+        <Media image={featured ? project.cover : project.preview} />
         <span className="project-index">{project.number}</span>
         <span className="project-view">
           View project <ArrowUpRight size={16} />
@@ -29,10 +32,11 @@ export function ProjectLink({
       <div className="project-caption">
         <div>
           <p className="eyebrow">
-            {project.kind}
+            {project.category} / {project.kind}
             {project.year ? ` / ${project.year}` : ""}
           </p>
           <h3>{project.title}</h3>
+          <p className="project-description">{project.overview}</p>
         </div>
         <ArrowUpRight size={26} />
       </div>
@@ -42,9 +46,8 @@ export function ProjectLink({
 export function ProjectBrowser() {
   const [filter, setFilter] = useState("All");
   const categories = projectCategories(projects);
-  const visible = projects.filter(
-    (project) =>
-      matchesProjectCategory(project, filter),
+  const visible = projects.filter((project) =>
+    matchesProjectCategory(project, filter),
   );
   return (
     <div className="project-browser">

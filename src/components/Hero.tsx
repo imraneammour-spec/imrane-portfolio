@@ -87,30 +87,29 @@ export function Hero() {
       <div className="hero-content">
         <p className="eyebrow hero-eyebrow">
           <i />
-          IMRANE AMMOUR / ARCHITECTURAL ATELIER
+          RABAT · SALÉ, MOROCCO
         </p>
         <h1 id="hero-title">
           <span className="title-mask">
-            <span>Designing</span>
+            <span>Imrane</span>
           </span>
           <span className="title-mask">
-            <span>Spaces.</span>
-          </span>
-          <span className="title-mask accent">
-            <span>Crafting</span>
-          </span>
-          <span className="title-mask accent">
-            <span>Atmospheres.</span>
+            <span>Ammour.</span>
           </span>
         </h1>
+        <p className="hero-role">INTERIOR DESIGNER &amp; 3D VISUALIZER</p>
         <p className="hero-subtitle">
-          Interior Architecture · 3D Visualization
-          <br />
-          Spatial Design
+          Interior spaces designed with precision and brought to life through
+          photorealistic visualization.
         </p>
-        <Link className="button button-solid" href="/projects/">
-          Discover projects <ArrowUpRight size={17} />
-        </Link>
+        <div className="hero-actions">
+          <Link className="button button-solid" href="/projects/">
+            View my projects <ArrowUpRight size={17} />
+          </Link>
+          <Link className="button button-outline" href="/contact/">
+            Contact me <ArrowUpRight size={17} />
+          </Link>
+        </div>
       </div>
       <div className="hero-art">
         <img

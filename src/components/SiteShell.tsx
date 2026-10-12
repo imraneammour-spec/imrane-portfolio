@@ -119,7 +119,7 @@ export function Preloader() {
       return;
     }
     setVisible(true);
-    const timer = window.setTimeout(() => setVisible(false), 900);
+    const timer = window.setTimeout(() => setVisible(false), 350);
     return () => clearTimeout(timer);
   }, []);
   return (
@@ -141,6 +141,38 @@ export function Preloader() {
 export function RouteStage({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const clickedRoute = useRef(false);
+  useEffect(() => {
+    // Exported pages can stream after navigation. Resolve the requested section
+    // when it exists instead of losing the anchor during the loading fallback.
+    let observer: MutationObserver | undefined;
+    const scrollHash = () => {
+      observer?.disconnect();
+      if (!window.location.hash) return;
+      let id: string;
+      try {
+        id = decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        return;
+      }
+      const resolveSection = () => {
+        const section = document.getElementById(id);
+        if (!section) return false;
+        section.scrollIntoView({ block: "start", behavior: "instant" });
+        observer?.disconnect();
+        return true;
+      };
+      if (!resolveSection()) {
+        observer = new MutationObserver(resolveSection);
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
+    };
+    scrollHash();
+    window.addEventListener("hashchange", scrollHash);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("hashchange", scrollHash);
+    };
+  }, [pathname]);
   useEffect(() => {
     const click = (event: MouseEvent) => {
       if (
@@ -191,9 +223,9 @@ export function Footer() {
           IMRANE<span>AMMOUR.</span>
         </Link>
         <p>
-          Spaces with intention.
+          Interior design.
           <br />
-          Images with atmosphere.
+          Architectural 3D visualization.
         </p>
         <a href="#page-top" className="back-top" aria-label="Back to top">
           <ArrowUp size={20} />
@@ -206,7 +238,7 @@ export function Footer() {
         <a href={`mailto:${site.email}`}>{site.email}</a>
         <span>{site.location}</span>
         <Link href="/contact/">
-          Let’s talk <ArrowUpRight size={14} />
+          Contact Imrane <ArrowUpRight size={14} />
         </Link>
       </div>
       <div className="motion-settings">

@@ -1,62 +1,94 @@
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Hero } from "@/components/Hero";
 import { ProjectLink } from "@/components/Projects";
 import { ContactFinale } from "@/components/ContactFinale";
 import { Media } from "@/components/Media";
-import { projects, getProject } from "@/data/projects";
+import { TechnicalVisual } from "@/components/TechnicalVisual";
+import { Process } from "@/components/Process";
+import { Software } from "@/components/Software";
+import { getProject } from "@/data/projects";
 import { site } from "@/data/site";
+import { services } from "@/data/services";
+
 export const metadata = { alternates: { canonical: "/" } };
 const featured = [
   "villa-contemporaine",
   "cafe-khemisset",
+  "parapharmacie-sale",
   "appartement-ayoub",
-  "dr-hafidi-opera",
 ].map((slug) => getProject(slug)!);
+
 export default function Home() {
   return (
     <>
       <Hero />
-      <section id="introduction" className="intro-statement section">
-        <div className="section-index" data-reveal>
-          <span className="eyebrow">01 / THE APPROACH</span>
-          <span className="tiny-label">CREATIVITY MEETS PRECISION</span>
-        </div>
-        <h2>
-          <span data-drift="left">Beyond spaces.</span>
-          <em data-drift="right">Into experiences.</em>
-        </h2>
-        <div className="intro-bottom" data-reveal>
-          <span className="atelier-symbol" aria-hidden="true">
-            ✳
-          </span>
-          <p>
-            I shape spaces through a dialogue between material, light and daily
-            life. From an initial idea to a photorealistic image, creative
-            direction and technical precision bring the design into focus.
-          </p>
-          <Link href="/about/" className="text-link">
-            Meet the designer <ArrowUpRight size={17} />
-          </Link>
-        </div>
-      </section>
-      <section className="featured-projects section">
+      <section
+        id="introduction"
+        className="home-services section"
+        aria-labelledby="services-title"
+      >
         <div className="section-heading" data-reveal>
           <div>
-            <p className="eyebrow">02 / SELECTED WORK</p>
-            <h2>
-              A sense
+            <p className="eyebrow">01 / WHAT I DO</p>
+            <h2 id="services-title">
+              Design, Visualization
               <br />
-              of <em>place.</em>
+              &amp; <em>Technical Expertise</em>
             </h2>
           </div>
           <p>
-            Residential, hospitality and commercial spaces.
-            <br />
-            Different stories. A considered approach.
+            From spatial concepts to detailed drawings and photorealistic
+            imagery.
+          </p>
+          <Link className="text-link" href="/services/">
+            Explore all services <ArrowUpRight size={18} />
+          </Link>
+        </div>
+        <div className="service-stories" data-stagger>
+          {services.slice(0, 3).map((service) => (
+            <Link
+              key={service.id}
+              href={`/services/#${service.id}`}
+              className="service-story"
+            >
+              <div className="service-story-visual">
+                {service.id === "technical" ? (
+                  <TechnicalVisual />
+                ) : (
+                  <Media image={getProject(service.project)!.preview} />
+                )}
+              </div>
+              <div className="service-story-copy">
+                <span className="eyebrow">{service.number} / SERVICE</span>
+                <h3>{service.title}</h3>
+                <p>{service.summary}</p>
+                <span className="service-story-cta">
+                  Explore {service.title.toLowerCase()}{" "}
+                  <ArrowUpRight size={18} />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+      <section
+        className="featured-projects section"
+        aria-labelledby="projects-title"
+      >
+        <div className="section-heading" data-reveal>
+          <div>
+            <p className="eyebrow">02 / THE PORTFOLIO</p>
+            <h2 id="projects-title">
+              Selected <em>Projects</em>
+            </h2>
+          </div>
+          <p>
+            Explore interior spaces, architectural concepts, and photorealistic
+            visualizations.
           </p>
           <Link href="/projects/" className="text-link">
-            All projects <ArrowUpRight size={17} />
+            View all projects <ArrowUpRight size={18} />
           </Link>
         </div>
         <div className="featured-composition">
@@ -67,90 +99,9 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="expertise section">
-        <div className="section-heading" data-reveal>
-          <div>
-            <p className="eyebrow">03 / EXPERTISE</p>
-            <h2>
-              From intention
-              <br />
-              to <em>detail.</em>
-            </h2>
-          </div>
-          <p>
-            A complete view of your space.
-            <br />
-            The concept, the image, the drawing.
-          </p>
-        </div>
-        <div className="expertise-list">
-          {[
-            [
-              "01",
-              "Interior architecture",
-              "Space planning, material palettes and considered interiors.",
-            ],
-            [
-              "02",
-              "Architectural visualization",
-              "Lighting, composition and photorealistic 3D imagery.",
-            ],
-            [
-              "03",
-              "Technical design & documentation",
-              "Plans, sections, elevations and design detailing.",
-            ],
-          ].map(([number, title, description]) => (
-            <Link
-              href="/services/"
-              className="expertise-row"
-              key={number}
-              data-reveal
-            >
-              <span>{number}</span>
-              <div>
-                <h3>{title}</h3>
-                <p>{description}</p>
-              </div>
-              <ArrowUpRight size={26} />
-            </Link>
-          ))}
-        </div>
-      </section>
-      <section className="showcase">
-        <div className="showcase-title" data-reveal>
-          <p className="eyebrow">04 / THE ATMOSPHERE</p>
-          <h2>
-            Light. Matter.
-            <br />
-            <em>Emotion.</em>
-          </h2>
-        </div>
-        <div className="showcase-images">
-          <Link
-            href="/projects/villa/"
-            aria-label="Explore the Villa interior"
-            className="showcase-frame"
-            data-parallax
-          >
-            <Media image={getProject("villa")!.gallery[1]} />
-            <span>
-              01 / MATERIAL &amp; LIGHT <ArrowUpRight size={18} />
-            </span>
-          </Link>
-          <Link
-            href="/projects/appartement-said-opera/"
-            aria-label="Explore Appartement Said Opera"
-            className="showcase-frame"
-          >
-            <Media image={getProject("appartement-said-opera")!.gallery[1]} />
-            <span>
-              02 / SPATIAL ATMOSPHERE <ArrowUpRight size={18} />
-            </span>
-          </Link>
-        </div>
-      </section>
-      <section className="about-preview section">
+      <Process />
+      <Software />
+      <section className="about-preview section" aria-labelledby="about-title">
         <div className="portrait-frame" data-reveal>
           <img
             src={site.portrait}
@@ -161,28 +112,31 @@ export default function Home() {
           />
         </div>
         <div className="about-preview-copy" data-reveal>
-          <p className="eyebrow">05 / THE PERSON BEHIND THE SPACES</p>
-          <h2>
-            Imrane
-            <br />
-            <em>Ammour.</em>
+          <p className="eyebrow">05 / ABOUT ME</p>
+          <h2 id="about-title">
+            Meet <em>Imrane Ammour</em>
           </h2>
           <p>
-            Interior architect and 3D visualizer. I bring spatial ideas to life
-            through considered interiors, technical design and atmospheric
-            images.
+            Interior designer and architectural 3D visualizer based in
+            Rabat–Salé, Morocco. I combine space planning, lighting and material
+            selection with 3D modeling and technical documentation.
+          </p>
+          <p>
+            My work includes residential interiors, cafés, retail spaces and
+            healthcare environments. The goal is to make each design practical,
+            visually coherent and easy to understand before realization.
           </p>
           <div className="skill-tags">
-            <span>Spatial design</span>
-            <span>Light &amp; materials</span>
+            <span>Interior design</span>
             <span>3D visualization</span>
+            <span>Technical drawings</span>
           </div>
           <Link href="/about/" className="text-link">
-            My approach &amp; expertise <ArrowRight size={17} />
+            More about Imrane <ArrowUpRight size={18} />
           </Link>
         </div>
       </section>
-      <ContactFinale />
+      <ContactFinale home />
     </>
   );
 }
